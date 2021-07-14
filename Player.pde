@@ -50,27 +50,38 @@ class Player{
   }
   
   
-  public void direction(){
+  //public void direction(){
   
-      if (keyCode==LEFT || key=='a') {
-      display(playerUp);
+  //    if (keyCode==LEFT || key=='a') {
+  //    display(playerUp);
       
-      //giving some speed to move left
-      position.x -= 3;
-    }
+  //    //giving some speed to move left
+  //    position.x -= 3;
+  //  }
       
-      else if (keyCode==RIGHT || key =='d'){
-        display(playerUp);
+  //    else if (keyCode==RIGHT || key =='d'){
+  //      display(playerUp);
         
-        //giving some speed to move left
-        position.x += 3;
-    }
+  //      //giving some speed to move left
+  //      position.x += 3;
+  //  }
       
-      else {
-        //default animation
-        display(playerUp);
-      }
+  //    else {
+  //      //default animation
+  //      display(playerUp);
+  //    }
   
+  //}
+  
+  
+  public void moveLeft(){
+    display(playerUp);
+    position.x -= 3;
+  }
+  
+  public void moveRight(){
+    display(playerUp);
+    position.x += 3;
   }
   
   
