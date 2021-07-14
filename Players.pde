@@ -7,7 +7,7 @@ class Player{
   
   public Player(float x, float y){
     //Loading image here
-    playerImg = loadImage("player1.jpg");
+    playerImg = loadImage("images/player1.jpg");
     playerImg.resize(100,100);
     
     position = new PVector(x,y);
