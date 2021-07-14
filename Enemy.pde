@@ -21,7 +21,7 @@ public void Eanimate(){
 }
 
 public void update(){
-    loc.y += vel;
+    //loc.y += vel;
     if(loc.y > height){
       isDead = true;
     }
