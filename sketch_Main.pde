@@ -1,4 +1,6 @@
 //Main class
+
+//boolean for movement of players
 boolean right = false, left = false, d = false, a = false;
 
 Enemy enemy;
@@ -21,6 +23,8 @@ void setup(){
   }
 }
 
+
+//if key is pressed everything will be true so that they move 
 void keyPressed()
 {
   if (keyCode == LEFT)
@@ -40,6 +44,8 @@ void keyPressed()
     d=true;
   }
 }
+
+//if key is released movement of player will stop
 void keyReleased()
 {
   if (keyCode == LEFT)
@@ -64,12 +70,15 @@ void draw(){
   clear();
   background(0);
   
+  //To display the players
   player1.display(player1.playerUp);
   player2.display(player2.playerUp);
 
   //calling the direction function which contains keypress
   //player1.direction();
   //player2.direction();
+  
+  //movemet code.
       if (left==true)
     {
       player1.moveLeft();
@@ -89,6 +98,7 @@ void draw(){
   
   
 
+//translate is used because i want the stars animation from center.
   translate(width/2,height/2);
   
   for (int i=0; i<stars.length; i++){
