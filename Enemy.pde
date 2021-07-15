@@ -6,7 +6,7 @@ float vel;
 int x=0;
 boolean isDead;
 public Enemy() {
-  myImage1 = loadImage("enemy.gif"); 
+  myImage1 = loadImage("images/enemy.gif"); 
   loc = new PVector(-350,-350);
   vel=3;
   isDead = false;
@@ -21,7 +21,7 @@ public void Eanimate(){
 }
 
 public void update(){
-    loc.y += vel;
+    //loc.y += vel;
     if(loc.y > height){
       isDead = true;
     }
