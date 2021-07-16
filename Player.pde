@@ -125,16 +125,16 @@ class Player {
     //if (keyPressed){
     if (keyCode == keyCodes[0]) {
       display(playerLeft);
-      position.x -= 1;
+      position.x -= 5;
     } else if (keyCode == keyCodes[1]) {
       display(playerRight);
-      position.x += 1;
+      position.x += 5;
     } else if (key == keys[0]) {
       display(playerLeft);
-      position.x -= 1;
+      position.x -= 5;
     } else if (key == keys[1]) {
       display(playerRight);
-      position.x += 1;
+      position.x += 5;
     }
     //} 
     else {
