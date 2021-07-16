@@ -1,105 +1,147 @@
+//for 2player movement try and use array of booleans
+// assign menus and sound
+
+
 //Rudra write your code here!
-class Player{
+class Player {
   //new variable for images
-  PImage playerImg;
-  PImage playerImg1;
-  PImage playerImg2;
-  
+
+  //PImage playerImg;
+  //PImage playerImgL1;
+  //PImage playerImgL2;
+  //PImage playerImgR1;
+  //PImage playerImgR2;
+
   //new pimage arrays
-  PImage [] playerUp;
-  
+  PImage playerDefault;
+  PImage [] playerLeft;
+  PImage [] playerRight;
+
   PVector position;
-  
+
+  //for direction
+  int[] keys = {97, 100};
+  int[] keyCodes = {37, 39};
+
   // for incrementing the position
   int index;
-  
+
   //for frameCount
   int count;
-  
-  public Player(float x, float y){
-    
+
+  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2) {
+
     //Initialising the arrays of pimage
-    playerUp = new PImage[2];
+    //player = new PImage[5];
+    playerLeft = new PImage[2];
+    playerRight = new PImage[2];
+
     
-    //Loading image here
+    playerLeft[0] = plImgLeft1;
+    playerLeft[1] = plImgLeft2;
+    playerRight[0] = plImgRight1;
+    playerRight[1] = plImgRight2;
+
     
-    playerImg1 = loadImage("images/pl1.png");
-    playerImg2 = loadImage("images/pl2.png");
-    //playerImg1.resize(100,100);
-    
-    //Giving arrays the image
-      playerUp[0] = playerImg1;
-      playerUp[1] = playerImg2;
-      
-      
-    
+    //Default image without any animation
+    playerDefault =  plImg;
+
     //resizing the images
-    playerUp[0].resize(80,180);
-    playerUp[1].resize(80,180);
-    
-    
-    
+    playerDefault.resize(100, 100);
+    playerLeft[0].resize(100, 100);
+    playerLeft[1].resize(100, 100);
+    playerRight[0].resize(100, 100);
+    playerRight[1].resize(100, 100);
+
+
+
+
     // for incrementing the position
-   index=0;
-   
-   //for frameCount
-   count=25;
-    
-    
-    position = new PVector(x,y);
+    index=0;
+
+    //for frameCount
+    count=10;
+
+
+    position = new PVector(x, y);
   }
-  
-  
-  //public void direction(){
-  
-  //    if (keyCode==LEFT || key=='a') {
-  //    display(playerUp);
-      
+
+
+  //public void direction() {
+
+  //  if (keyCode==LEFT || key=='a') {
+  //    display(playerLeft);
+
   //    //giving some speed to move left
-  //    position.x -= 3;
+  //    position.x -= 5;
+  //  } else if (keyCode==RIGHT || key =='d') {
+  //    display(playerRight);
+
+  //    //giving some speed to move left
+  //    position.x += 5;
+  //  } else {
+  //    display(playerDefault);
   //  }
-      
-  //    else if (keyCode==RIGHT || key =='d'){
-  //      display(playerUp);
-        
-  //      //giving some speed to move left
-  //      position.x += 3;
-  //  }
-      
-  //    else {
-  //      //default animation
-  //      display(playerUp);
-  //    }
-  
   //}
-  
-  
-  public void moveLeft(){
-    display(playerUp);
-    position.x -= 3;
+
+
+  //public void moveLeft(){
+  //  display(playerLeft);
+  //  position.x -= 3;
+  //}
+
+  //public void moveRight(){
+  //  display(playerRight);
+  //  position.x += 3;
+  //}
+
+  public void defaultImage(PImage pimage){
+     image(pimage, position.x, position.y);
   }
-  
-  public void moveRight(){
-    display(playerUp);
-    position.x += 3;
-  }
-  
-  
-  public void display(PImage[] pimage){
-    
+
+  public void display(PImage[] pimage) {
+
+    //println(index);
     //Displaying the image
-    image(pimage[index], position.x,position.y);
-    if (frameCount%count==0){
+    image(pimage[index], position.x, position.y);
+
+    if (frameCount%count==0) {
       //incrementing index so that it moves to next image
       index++;
       //if statement to return index back to 0 i.e 1st image so that it animates.
-      if (index>pimage.length-1){
+      if (index>pimage.length-1) {
         index=0;
       }
     }
-    
   }
-  
-  
-  
+
+  void inputPlayer1() {
+    //if (keyPressed){
+    if (keyCode == keyCodes[0]) {
+      display(playerLeft);
+      position.x -= 1;
+    } else if (keyCode == keyCodes[1]) {
+      display(playerRight);
+      position.x += 1;
+    }
+    //} 
+    else {
+      defaultImage(playerDefault);
+    }
+  }
+
+  void inputPlayer2() {
+    //if (keyPressed){
+    if (key == keys[0]) {
+      display(playerLeft);
+      position.x -= 1;
+    } else if (key == keys[1]) {
+      display(playerRight);
+      position.x += 1;
+    }
+    //} 
+    else {
+      defaultImage(playerDefault);
+    }
+  }
 }
