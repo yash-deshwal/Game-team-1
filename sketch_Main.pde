@@ -108,8 +108,8 @@ void draw() {
   //player2.display(player2.playerDefault);
 
   //calling the direction function which contains keypress
-  player1.inputPlayer1();
-  player2.inputPlayer2();
+  player1.inputPlayer();
+  player2.inputPlayer();
   //player2.direction();
 
   //movemet code.

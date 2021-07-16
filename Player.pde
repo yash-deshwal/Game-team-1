@@ -115,7 +115,7 @@ class Player {
     }
   }
 
-  void inputPlayer1() {
+  void inputPlayer() {
     //if (keyPressed){
     if (keyCode == keyCodes[0]) {
       display(playerLeft);
@@ -123,16 +123,7 @@ class Player {
     } else if (keyCode == keyCodes[1]) {
       display(playerRight);
       position.x += 1;
-    }
-    //} 
-    else {
-      defaultImage(playerDefault);
-    }
-  }
-
-  void inputPlayer2() {
-    //if (keyPressed){
-    if (key == keys[0]) {
+    } else if (key == keys[0]) {
       display(playerLeft);
       position.x -= 1;
     } else if (key == keys[1]) {
@@ -144,4 +135,19 @@ class Player {
       defaultImage(playerDefault);
     }
   }
+
+  //void inputPlayer2() {
+  //  //if (keyPressed){
+  //  if (key == keys[0]) {
+  //    display(playerLeft);
+  //    position.x -= 1;
+  //  } else if (key == keys[1]) {
+  //    display(playerRight);
+  //    position.x += 1;
+  //  }
+  //  //} 
+  //  else {
+  //    defaultImage(playerDefault);
+  //  }
+  //}
 }
