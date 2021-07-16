@@ -22,6 +22,9 @@ class Player {
   //for direction
   int[] keys = {97, 100};
   int[] keyCodes = {37, 39};
+  
+  //size of the space shooter
+  int size;
 
   // for incrementing the position
   int index;
@@ -45,6 +48,9 @@ class Player {
     
     //Default image without any animation
     playerDefault =  plImg;
+    
+    //size of the space shooter
+    size = 100;
 
     //resizing the images
     playerDefault.resize(100, 100);
@@ -53,7 +59,7 @@ class Player {
     playerRight[0].resize(100, 100);
     playerRight[1].resize(100, 100);
 
-
+  
 
 
     // for incrementing the position
@@ -115,7 +121,7 @@ class Player {
     }
   }
 
-  void inputPlayer() {
+  public void inputPlayer() {
     //if (keyPressed){
     if (keyCode == keyCodes[0]) {
       display(playerLeft);
@@ -134,6 +140,7 @@ class Player {
     else {
       defaultImage(playerDefault);
     }
+    checkBounds();
   }
 
   //void inputPlayer2() {
@@ -150,4 +157,15 @@ class Player {
   //    defaultImage(playerDefault);
   //  }
   //}
+  
+  public void checkBounds(){
+    if (position.x > width){
+      position.x = -size;
+    }
+    if (position.x < -size){
+      position.x = width;
+    }
+  }
+  
+  
 }
