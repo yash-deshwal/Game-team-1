@@ -1,22 +1,33 @@
 //Yashwant enemy class code here!
 class Enemy{
-PImage myImage1; 
+  
+PImage myImage;
 PVector loc;
 float vel;
-//int x=0;
+int x;
 boolean isDead;
 public Enemy() {
-  myImage1 = loadImage("images/enemy.gif"); 
+  myImage = loadImage("images/e1.png"); 
+
+ 
+  
   loc = new PVector(random(800),random(-200,-100));
   vel=random(1.5,3);
   isDead = false;
+  
+  x=0;
 }
 
 
 public void Eanimate(){
+ 
  if(frameCount%1==0){
-   //x++;
-   image(myImage1,loc.x,loc.y);
+   x++;
+   image(myImage,loc.x,loc.y);
+   //if (x>pimage.length-1) {
+   //     x=0;
+   //   }
+   
  } 
 }
 
