@@ -20,8 +20,7 @@ class Player {
   PVector position;
 
   //for direction
-  int[] keys = {97, 100};
-  int[] keyCodes = {37, 39};
+  int[] keyCodes = {37, 39, 65, 68};
   
   //size of the space shooter
   int size;
@@ -129,10 +128,10 @@ class Player {
     } else if (keyCode == keyCodes[1]) {
       display(playerRight);
       position.x += 5;
-    } else if (key == keys[0]) {
+    } else if (keyCode == keyCodes[2]) {
       display(playerLeft);
       position.x -= 5;
-    } else if (key == keys[1]) {
+    } else if (keyCode == keyCodes[3]) {
       display(playerRight);
       position.x += 5;
     }

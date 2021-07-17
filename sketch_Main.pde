@@ -56,8 +56,11 @@ void setup() {
 //{
 //  //println((int)key);
 //  //println(key);
-//  //println((int)keyCode);
-//  //println(keyCode);
+//  println((int)keyCode);
+//  println(keyCode);
+  
+//  //37 left, 39 right
+//  //65 left, 68 right
 
 
 //  //if (keyCode == LEFT)
@@ -98,6 +101,8 @@ void setup() {
 //    d=false;
 //  }
 //}
+
+
 
 void draw() {
   clear();
