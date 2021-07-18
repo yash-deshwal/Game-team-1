@@ -11,6 +11,9 @@
 //boolean for movement of players
 //boolean right = false, left = false, d = false, a = false;
 
+//PImage startScreen;
+int stage;
+
 Enemy[] enemy;
 Player player1;
 
@@ -25,6 +28,7 @@ PImage playerImgR2;
 
 void setup() {
   size(800, 800);
+  stage=1;
 
   playerImg = loadImage("images/pl1.png");
   playerImgL1 = loadImage("images/plleft1.png");
@@ -36,6 +40,10 @@ void setup() {
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
   player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
   
+  //startScreen = loadImage("images/bg.jpg");
+  //startScreen.resize(800,800);
+  
+  //image(startScreen,0,0);
   
   enemy = new Enemy[10];
   
@@ -105,6 +113,30 @@ void setup() {
 
 
 void draw() {
+  if(stage == 1){
+    clear();
+  background(0);
+  
+    textAlign(CENTER);
+    int textsize = 40;
+    textSize(textsize);
+    fill(255);
+    text("GALAXY SHOOTER",400,350);
+    text("Press any key to start game",400,400);
+    
+    //translate is used because i want the stars animation from center.
+  translate(width/2, height/2);
+
+  for (int i=0; i<stars.length; i++) {
+    stars[i].change();
+    stars[i].animate();
+  }
+    
+    if(keyPressed == true){
+      stage = 2;
+    }
+  }
+  if (stage ==2){
   clear();
   background(0);
 
@@ -146,6 +178,7 @@ void draw() {
   for (int i=0; i<stars.length; i++) {
     stars[i].change();
     stars[i].animate();
+  }
   }
 
 
