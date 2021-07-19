@@ -20,8 +20,8 @@ class Player {
   PVector position;
 
   //for direction
-  int[] keyCodes = {37, 39, 65, 68};
-  
+  int[] keyCodes = {37, 39, 65, 68, 32};
+
   //size of the space shooter
   int size;
 
@@ -38,16 +38,16 @@ class Player {
     playerLeft = new PImage[2];
     playerRight = new PImage[2];
 
-    
+
     playerLeft[0] = plImgLeft1;
     playerLeft[1] = plImgLeft2;
     playerRight[0] = plImgRight1;
     playerRight[1] = plImgRight2;
 
-    
+
     //Default image without any animation
     playerDefault =  plImg;
-    
+
     //size of the space shooter
     size = 100;
 
@@ -58,7 +58,7 @@ class Player {
     playerRight[0].resize(100, 100);
     playerRight[1].resize(100, 100);
 
-  
+
 
 
     // for incrementing the position
@@ -72,22 +72,24 @@ class Player {
   }
 
 
-  //public void direction() {
+  public void direction() {
 
-  //  if (keyCode==LEFT || key=='a') {
-  //    display(playerLeft);
+    if (keyCode==LEFT || key=='a') {
+      display(playerLeft);
 
-  //    //giving some speed to move left
-  //    position.x -= 5;
-  //  } else if (keyCode==RIGHT || key =='d') {
-  //    display(playerRight);
+      //giving some speed to move left
+      position.x -= 5;
+    } else if (keyCode==RIGHT || key =='d') {
+      display(playerRight);
 
-  //    //giving some speed to move left
-  //    position.x += 5;
-  //  } else {
-  //    display(playerDefault);
-  //  }
-  //}
+      //giving some speed to move left
+      position.x += 5;
+    } 
+    //else {
+    //  defaultImage(playerDefault);
+    //}
+    checkBounds();
+  }
 
 
   //public void moveLeft(){
@@ -100,8 +102,8 @@ class Player {
   //  position.x += 3;
   //}
 
-  public void defaultImage(PImage pimage){
-     image(pimage, position.x, position.y);
+  public void defaultImage(PImage pimage) {
+    image(pimage, position.x, position.y);
   }
 
   public void display(PImage[] pimage) {
@@ -120,28 +122,28 @@ class Player {
     }
   }
 
-  public void inputPlayer() {
-    //if (keyPressed){
-    //if (keyCode == keyCodes[0]) {
-    //  display(playerLeft);
-    //  position.x -= 5;
-    //} else if (keyCode == keyCodes[1]) {
-    //  display(playerRight);
-    //  position.x += 5;
-    //}
-     if (keyCode == keyCodes[2]) {
-      display(playerLeft);
-      position.x -= 5;
-    } else if (keyCode == keyCodes[3]) {
-      display(playerRight);
-      position.x += 5;
-    }
-    
-    else {
-      defaultImage(playerDefault);
-    }
-    checkBounds();
-  }
+  //public void inputPlayer() {
+  //  //if (keyPressed){
+  //  //if (keyCode == keyCodes[0]) {
+  //  //  display(playerLeft);
+  //  //  position.x -= 5;
+  //  //} else if (keyCode == keyCodes[1]) {
+  //  //  display(playerRight);
+  //  //  position.x += 5;
+  //  //}
+  //   if (keyCode == keyCodes[2]) {
+  //    display(playerLeft);
+  //    position.x -= 5;
+  //  } else if (keyCode == keyCodes[3]) {
+  //    display(playerRight);
+  //    position.x += 5;
+  //  } 
+
+  //  else {
+  //    defaultImage(playerDefault);
+  //  }
+  //  checkBounds();
+  //}
 
   //void inputPlayer2() {
   //  //if (keyPressed){
@@ -157,15 +159,19 @@ class Player {
   //    defaultImage(playerDefault);
   //  }
   //}
-  
-  public void checkBounds(){
-    if (position.x > width){
+
+  public void checkBounds() {
+    if (position.x > width) {
       position.x = -size;
     }
-    if (position.x < -size){
+    if (position.x < -size) {
       position.x = width;
     }
   }
-  
-  
+
+
+  public void shoot() {
+    Bullet bullet = new Bullet(position.x+50, position.y, -5);
+    bullets.add(bullet);
+  }
 }
