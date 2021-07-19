@@ -122,20 +122,21 @@ class Player {
 
   public void inputPlayer() {
     //if (keyPressed){
-    if (keyCode == keyCodes[0]) {
-      display(playerLeft);
-      position.x -= 5;
-    } else if (keyCode == keyCodes[1]) {
-      display(playerRight);
-      position.x += 5;
-    } else if (keyCode == keyCodes[2]) {
+    //if (keyCode == keyCodes[0]) {
+    //  display(playerLeft);
+    //  position.x -= 5;
+    //} else if (keyCode == keyCodes[1]) {
+    //  display(playerRight);
+    //  position.x += 5;
+    //}
+     if (keyCode == keyCodes[2]) {
       display(playerLeft);
       position.x -= 5;
     } else if (keyCode == keyCodes[3]) {
       display(playerRight);
       position.x += 5;
     }
-    //} 
+    
     else {
       defaultImage(playerDefault);
     }

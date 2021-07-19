@@ -17,7 +17,7 @@ int stage;
 Enemy[] enemy;
 Player player1;
 
-Player player2;
+//Player player2;
 Star[] stars;
 
 PImage playerImg;
@@ -38,9 +38,9 @@ void setup() {
 
 
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
+  //player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
   
-  //startScreen = loadImage("images/bg.jpg");
+  //startScreen = loadImage("images/bg1.jpg");
   //startScreen.resize(800,800);
   
   //image(startScreen,0,0);
@@ -146,7 +146,7 @@ void draw() {
 
   //calling the direction function which contains keypress
   player1.inputPlayer();
-  player2.inputPlayer();
+  //player2.inputPlayer();
   //player2.direction();
 
   //movemet code.
