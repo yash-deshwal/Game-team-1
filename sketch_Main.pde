@@ -2,8 +2,10 @@
 //*****************************Bug******************************
 //if you press any other key than 'a' or 'd' it throws error ArrayIndexOutOfBoundsException: 1 => solution I made another method just to display the default image and called it inside input function
 //Not able to control both the players at once
+//Animation is not upto the mark it overlaps when we move left or right.
+//Enemies are overlapping.
 //if we move left or right and then fire it goes back to default image(space shooter)
-//if we keep pressing space bar then it creates a line effect (bullets)
+//if we keep pressing space bar then it creates a line effect (bullets) => solution Yashwant used keyReleased instead of keyPress.
 //*****************************Bug******************************
 
 
@@ -13,6 +15,7 @@
 //boolean for movement of players
 //boolean right = false, left = false, d = false, a = false;
 
+//PImage startScreen;
 //PImage startScreen;
 int stage;
 
@@ -51,7 +54,7 @@ void setup() {
 
   //image(startScreen,0,0);
 
-  enemy = new Enemy[10];
+  enemy = new Enemy[7];
 
   for (int i=0; i<enemy.length; i++) {
     enemy[i] = new Enemy();
@@ -182,7 +185,10 @@ void draw() {
     for (int i=0; i<enemy.length; i++) {
       enemy[i].Eanimate();
       enemy[i].update();
+      enemy[i].shootE();
+      //enemy[i].hitCheck();
     }
+ 
 
     //translate is used because i want the stars animation from center.
     translate(width/2, height/2);
@@ -194,8 +200,9 @@ void draw() {
   }
 }
 
-void keyPressed() {
-  if (key == ' ') {
-    player1.shoot();
-  }
+
+void keyReleased(){
+if( keyCode == LEFT|| keyCode == RIGHT || keyCode == UP){
+player1.shoot();
+}
 }

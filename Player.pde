@@ -171,7 +171,7 @@ class Player {
 
 
   public void shoot() {
-    Bullet bullet = new Bullet(position.x+50, position.y, -5);
+    Bullet bullet = new Bullet(position.x+50, position.y, -5, true);
     bullets.add(bullet);
   }
 }
