@@ -1,18 +1,18 @@
 //Main class
 //*****************************Bug******************************
-//if you press any other key than 'a' or 'd' it throws error ArrayIndexOutOfBoundsException: 1 => solution I made another method just to display the default image and called it inside input function
+//if you press any other key than 'a' or 'd' it throws error ArrayIndexOutOfBoundsException: 1 => solution We made another method just to display the default image and called it inside input function
 //Not able to control both the players at once
-//Animation is not upto the mark it overlaps when we move left or right.
+//Animation is not upto the mark it overlaps when we move left or right => solution We used else statement inside the input function instead of directly displaying it to main function
 //Enemies are overlapping.
 //Change enemies to arraylist
 //So the movement works fine but only 1 player can move at a time shooting works fine
 //if we move left or right and then fire it goes back to default image(space shooter)
-//if we keep pressing space bar then it creates a line effect (bullets) => solution Yashwant used keyReleased instead of keyPress.
+//if we keep pressing space bar then it creates a line effect (bullets) => solution We used keyReleased instead of keyPress.
 //*****************************Bug******************************
 
 //***********************************Changes****************************************
 //inherit enemy class to one another enemy
-//input of speed using arrays in the constructor
+//input of speed using arrays in the constructor => done!
 
 //for switching the screen
 int stage;
@@ -86,13 +86,8 @@ void draw() {
     text("GALAXY SHOOTER", 400, 350);
     text("Press any key to start game", 400, 400);
 
-    //translate is used because i want the stars animation from center.
-    translate(width/2, height/2);
-    //for displaying stars
-    for (int i=0; i<stars.length; i++) {
-      stars[i].change();
-      stars[i].animate();
-    }
+    //for displaying stars in the background.
+    displayStars();
 
     if (keyPressed == true) {
       stage = 2;
