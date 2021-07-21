@@ -44,6 +44,12 @@ PImage playerImgL2;
 PImage playerImgR1;
 PImage playerImgR2;
 
+PImage player2Img;
+PImage player2ImgL1;
+PImage player2ImgL2;
+PImage player2ImgR1;
+PImage player2ImgR2;
+
 void setup() {
   size(800, 800);
   //initial value of stage 
@@ -57,6 +63,12 @@ void setup() {
   playerImgL2 = loadImage("images/plleft2.png");
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
+  
+  player2Img = loadImage("images/d.png");
+  player2ImgL1 = loadImage("images/pll1.png");
+  player2ImgL2 = loadImage("images/pl12.png");
+  player2ImgR1 = loadImage("images/plr1.png");
+  player2ImgR2 = loadImage("images/plr2.png");
 
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
@@ -65,7 +77,7 @@ void setup() {
 
   //Creating 2 new objects of player.
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1);
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2);
+  player2 = new Player(100, 600,  player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2);
 
   //initialising the enemy array
   enemy = new Enemy[7];
