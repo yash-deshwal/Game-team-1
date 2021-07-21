@@ -4,10 +4,14 @@
 //Not able to control both the players at once
 //Animation is not upto the mark it overlaps when we move left or right.
 //Enemies are overlapping.
+//Change enemies to arraylist
 //if we move left or right and then fire it goes back to default image(space shooter)
 //if we keep pressing space bar then it creates a line effect (bullets) => solution Yashwant used keyReleased instead of keyPress.
 //*****************************Bug******************************
 
+//***********************************Changes****************************************
+//inherit enemy class to one another enemy
+//input of speed using arrays in the constructor
 
 
 //create another class for images
@@ -147,7 +151,7 @@ void draw() {
   }
   if (stage ==2) {
     clear();
-    background(0);
+    background(0); 
 
     //To display the players
     //player1.display(player1.playerDefault);
@@ -155,7 +159,10 @@ void draw() {
 
     //calling the direction function which contains keypress
     player1.defaultImage(playerImg);
+    
     player1.direction();
+    
+    //for displaying bullets
     for (int i = 0; i < bullets.size(); i++) {
       Bullet b = (Bullet) bullets.get(i);
       b.move();
@@ -186,7 +193,6 @@ void draw() {
       enemy[i].Eanimate();
       enemy[i].update();
       enemy[i].shootE();
-      //enemy[i].hitCheck();
     }
  
 
@@ -202,7 +208,7 @@ void draw() {
 
 
 void keyReleased(){
-if( keyCode == LEFT|| keyCode == RIGHT || keyCode == UP){
+if( key == ' '){
 player1.shoot();
 }
 }

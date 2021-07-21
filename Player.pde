@@ -20,6 +20,7 @@ class Player {
   PVector position;
 
   //for direction
+  //put array of size 2 inside constructor and call 37,39 for player1 and 65 and 68 for player 2
   int[] keyCodes = {37, 39, 65, 68, 32};
 
   //size of the space shooter
@@ -76,14 +77,14 @@ class Player {
 
     if (keyCode==LEFT || key=='a') {
       display(playerLeft);
-
       //giving some speed to move left
       position.x -= 5;
+
     } else if (keyCode==RIGHT || key =='d') {
       display(playerRight);
-
       //giving some speed to move left
       position.x += 5;
+
     } 
     //else {
     //  defaultImage(playerDefault);
