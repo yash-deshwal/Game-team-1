@@ -90,7 +90,8 @@ class Player {
     if (keyCode == keyCodes[0]) {
       display(playerLeft);
       position.x -= 5;
-    } if (keyCode == keyCodes[1]) {
+    }
+    else if (keyCode == keyCodes[1]) {
       display(playerRight);
       position.x += 5;
     }
