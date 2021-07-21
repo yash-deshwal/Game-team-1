@@ -14,11 +14,11 @@
 //inherit enemy class to one another enemy
 //input of speed using arrays in the constructor
 
-
+//for switching the screen
 int stage;
 
-
 ArrayList bullets;
+
 Enemy[] enemy;
 
 Player player1;
@@ -34,54 +34,47 @@ PImage playerImgR2;
 
 void setup() {
   size(800, 800);
+  //initial value of stage 
   stage=1;
 
   bullets = new ArrayList();
 
+  //loading images for players here.
   playerImg = loadImage("images/pl1.png");
   playerImgL1 = loadImage("images/plleft1.png");
   playerImgL2 = loadImage("images/plleft2.png");
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
-  
-  //37 left, 39 right
-  //65 left, 68 right
-  int [] playerControl1 = {37,39};
-  int [] playerControl2 = {65,68};
 
+  //37 left(LEFT), 39 right(RIGHT)
+  //65 left(a), 68 right(d)
+  int [] playerControl1 = {37, 39};
+  int [] playerControl2 = {65, 68};
 
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2,playerControl1);
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2,playerControl2);
+  //Creating 2 new objects of player.
+  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1);
+  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2);
 
-  //startScreen = loadImage("images/bg1.jpg");
-  //startScreen.resize(800,800);
-
-  //image(startScreen,0,0);
-
+  //initialising the enemy array
   enemy = new Enemy[7];
 
+  //creating new objects of enemies
   for (int i=0; i<enemy.length; i++) {
     enemy[i] = new Enemy();
   }
 
+  //initialising the stars array
   stars = new Star[1000];
 
+  //creating new objects of stars
   for (int i=0; i<stars.length; i++) {
     stars[i] = new Star();
   }
 }
 
 
-//if key is pressed everything will be true so that they move 
-//void keyPressed()
-//{
-//  //println((int)key);
-//  //println(key);
-  
-
-
-
 void draw() {
+  //stage = 1 so that it starts from the menu.
   if (stage == 1) {
     clear();
     background(0);
@@ -95,7 +88,7 @@ void draw() {
 
     //translate is used because i want the stars animation from center.
     translate(width/2, height/2);
-
+    //for displaying stars
     for (int i=0; i<stars.length; i++) {
       stars[i].change();
       stars[i].animate();
@@ -105,73 +98,66 @@ void draw() {
       stage = 2;
     }
   }
+  //stage = 2 is the actual gameplay
   if (stage ==2) {
     clear();
     background(0); 
 
-    //To display the players
-    //player1.display(player1.playerDefault);
-    //player2.display(player2.playerDefault);
 
-    //calling the direction function which contains keypress
-    println((int)keyCode);
-    println(keyCode);
+    //println((int)keyCode);
+    //println(keyCode);
+
+    //calling the inputPlayer class for movement as well as for animation.
     player1.inputPlayer();
     player2.inputPlayer();
-    
+
     //for displaying bullets
-    for (int i = 0; i < bullets.size(); i++) {
-      Bullet b = (Bullet) bullets.get(i);
-      b.move();
-      b.display();
-    }
-    //player2.inputPlayer();
-    //player2.direction();
+    displayBullets();
 
-    //movemet code.
-    //  if (left==true)
-    //{
-    //  player1.moveLeft();
-    //}
-    //if (right==true)
-    //{
-    //  player1.moveRight();
-    //}
-    //if (a==true)
-    //{
-    //  player2.moveLeft();
-    //}
-    //if (d==true)
-    //{
-    //  player2.moveRight();
-    //}
+    //for displaying enemies
+    displayEnemies();
 
-    for (int i=0; i<enemy.length; i++) {
-      enemy[i].Eanimate();
-      enemy[i].update();
-      enemy[i].shootE();
-    }
- 
-
-    //translate is used because i want the stars animation from center.
-    translate(width/2, height/2);
-
-    for (int i=0; i<stars.length; i++) {
-      stars[i].change();
-      stars[i].animate();
-    }
+    //for displaying stars in the background.
+    displayStars();
   }
 }
 
-
-void keyReleased(){
-if( keyCode == UP){
-player1.shoot();
-}  
-  
-if( key == 'w'){
-player2.shoot();
+//for displaying bullets
+void displayBullets() {
+  for (int i = 0; i < bullets.size(); i++) {
+    Bullet b = (Bullet) bullets.get(i);
+    b.move();
+    b.display();
+  }
 }
 
+//for displaying enemies
+void displayEnemies() {
+  for (int i=0; i<enemy.length; i++) {
+    enemy[i].Eanimate();
+    enemy[i].update();
+    enemy[i].shootE();
+  }
+}
 
+//for displaying stars
+void displayStars() {
+  //translate is used because we want the stars animation from center.
+  translate(width/2, height/2);
+
+  for (int i=0; i<stars.length; i++) {
+    stars[i].change();
+    stars[i].animate();
+  }
+}
+
+//For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
+void keyReleased() {
+  if ( keyCode == UP) {
+    player1.shoot();
+  }  
+
+  if ( key == 'w') {
+    player2.shoot();
+  }
 }
