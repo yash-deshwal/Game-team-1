@@ -1,16 +1,5 @@
-//for 2player movement try and use array of booleans
-// assign menus and sound
-
-
 //Rudra write your code here!
 class Player {
-  //new variable for images
-
-  //PImage playerImg;
-  //PImage playerImgL1;
-  //PImage playerImgL2;
-  //PImage playerImgR1;
-  //PImage playerImgR2;
 
   //new pimage arrays
   PImage playerDefault;
@@ -21,7 +10,8 @@ class Player {
 
   //for direction
   //put array of size 2 inside constructor and call 37,39 for player1 and 65 and 68 for player 2
-  int[] keyCodes = {37, 39, 65, 68, 32};
+  int[] keyCodes;
+//= {37, 39, 65, 68, 32};
 
   //size of the space shooter
   int size;
@@ -32,14 +22,13 @@ class Player {
   //for frameCount
   int count;
 
-  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2) {
+  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys) {
 
-    //Initialising the arrays of pimage
-    //player = new PImage[5];
+    //Initialising the arrays of pimage for animation
     playerLeft = new PImage[2];
     playerRight = new PImage[2];
 
-
+    //assigning images to arrays
     playerLeft[0] = plImgLeft1;
     playerLeft[1] = plImgLeft2;
     playerRight[0] = plImgRight1;
@@ -58,61 +47,33 @@ class Player {
     playerLeft[1].resize(100, 100);
     playerRight[0].resize(100, 100);
     playerRight[1].resize(100, 100);
-
-
-
+    
+    //for direction
+    keyCodes = new int[2];
+    
+    //assigning keys array to keycodes for movement.
+    keyCodes = keys;
 
     // for incrementing the position
     index=0;
 
     //for frameCount
-    count=10;
+    count=20;
 
-
+    //for position of the player
     position = new PVector(x, y);
   }
 
-
-  public void direction() {
-
-    if (keyCode==LEFT || key=='a') {
-      display(playerLeft);
-      //giving some speed to move left
-      position.x -= 5;
-
-    } else if (keyCode==RIGHT || key =='d') {
-      display(playerRight);
-      //giving some speed to move left
-      position.x += 5;
-
-    } 
-    //else {
-    //  defaultImage(playerDefault);
-    //}
-    checkBounds();
-  }
-
-
-  //public void moveLeft(){
-  //  display(playerLeft);
-  //  position.x -= 3;
-  //}
-
-  //public void moveRight(){
-  //  display(playerRight);
-  //  position.x += 3;
-  //}
-
+//for displaying the default image if no keys are pressed
   public void defaultImage(PImage pimage) {
     image(pimage, position.x, position.y);
   }
 
+//for animatiom 
   public void display(PImage[] pimage) {
-
-    //println(index);
     //Displaying the image
     image(pimage[index], position.x, position.y);
-
+    //for smooth animation
     if (frameCount%count==0) {
       //incrementing index so that it moves to next image
       index++;
@@ -123,55 +84,42 @@ class Player {
     }
   }
 
-  //public void inputPlayer() {
-  //  //if (keyPressed){
-  //  //if (keyCode == keyCodes[0]) {
-  //  //  display(playerLeft);
-  //  //  position.x -= 5;
-  //  //} else if (keyCode == keyCodes[1]) {
-  //  //  display(playerRight);
-  //  //  position.x += 5;
-  //  //}
-  //   if (keyCode == keyCodes[2]) {
-  //    display(playerLeft);
-  //    position.x -= 5;
-  //  } else if (keyCode == keyCodes[3]) {
-  //    display(playerRight);
-  //    position.x += 5;
-  //  } 
+//for movement
+  public void inputPlayer() {
+    //if (keyPressed){
+    if (keyCode == keyCodes[0]) {
+      display(playerLeft);
+      position.x -= 5;
+    } if (keyCode == keyCodes[1]) {
+      display(playerRight);
+      position.x += 5;
+    }
+     else {
+      defaultImage(playerDefault);
+    }
+    //}
 
-  //  else {
-  //    defaultImage(playerDefault);
-  //  }
-  //  checkBounds();
-  //}
+    checkBounds();
+  
+  }
 
-  //void inputPlayer2() {
-  //  //if (keyPressed){
-  //  if (key == keys[0]) {
-  //    display(playerLeft);
-  //    position.x -= 1;
-  //  } else if (key == keys[1]) {
-  //    display(playerRight);
-  //    position.x += 1;
-  //  }
-  //  //} 
-  //  else {
-  //    defaultImage(playerDefault);
-  //  }
-  //}
-
+//if player moves out of the screen in right direction it reappears from left side of the screen
   public void checkBounds() {
     if (position.x > width) {
+      //changing the position to so that it reappears from left, 
+      //why -size? you can give 0 as well but to look good here we are giving the size of the player
       position.x = -size;
     }
     if (position.x < -size) {
+      //changing the position to so that it reappears from right, 
+      //why width? you can give any value after width as well but to look good here we are giving the width of the screen
       position.x = width;
     }
   }
 
 
   public void shoot() {
+    // creating new object of bullet at player location and changing color as well giving velocity
     Bullet bullet = new Bullet(position.x+50, position.y, -5, true);
     bullets.add(bullet);
   }

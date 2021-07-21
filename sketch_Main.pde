@@ -5,6 +5,7 @@
 //Animation is not upto the mark it overlaps when we move left or right.
 //Enemies are overlapping.
 //Change enemies to arraylist
+//So the movement works fine but only 1 player can move at a time shooting works fine
 //if we move left or right and then fire it goes back to default image(space shooter)
 //if we keep pressing space bar then it creates a line effect (bullets) => solution Yashwant used keyReleased instead of keyPress.
 //*****************************Bug******************************
@@ -14,21 +15,15 @@
 //input of speed using arrays in the constructor
 
 
-//create another class for images
-
-//boolean for movement of players
-//boolean right = false, left = false, d = false, a = false;
-
-//PImage startScreen;
-//PImage startScreen;
 int stage;
 
 
 ArrayList bullets;
 Enemy[] enemy;
-Player player1;
 
-//Player player2;
+Player player1;
+Player player2;
+
 Star[] stars;
 
 PImage playerImg;
@@ -48,10 +43,15 @@ void setup() {
   playerImgL2 = loadImage("images/plleft2.png");
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
+  
+  //37 left, 39 right
+  //65 left, 68 right
+  int [] playerControl1 = {37,39};
+  int [] playerControl2 = {65,68};
 
 
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
-  //player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2);
+  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2,playerControl1);
+  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2,playerControl2);
 
   //startScreen = loadImage("images/bg1.jpg");
   //startScreen.resize(800,800);
@@ -77,51 +77,7 @@ void setup() {
 //{
 //  //println((int)key);
 //  //println(key);
-//  println((int)keyCode);
-//  println(keyCode);
-
-//  //37 left, 39 right
-//  //65 left, 68 right
-
-
-//  //if (keyCode == LEFT)
-//  //{
-//  //  left = true;
-//  //}
-//  //if (keyCode == RIGHT)
-//  //{
-//  //  right = true;
-//  //}
-//  //if (key == 'a')
-//  //{
-//  //  a=true;
-//  //}
-//  //if (key == 'd' )
-//  //{
-//  //  d=true;
-//  //}
-//}
-
-////if key is released movement of player will stop
-//void keyReleased()
-//{
-//  if (keyCode == LEFT)
-//  {
-//    left = false;
-//  }
-//  if (keyCode==RIGHT)
-//  {
-//    right = false;
-//  }
-//  if (key=='a')
-//  {
-//    a=false;
-//  }
-//  if (key=='d')
-//  {
-//    d=false;
-//  }
-//}
+  
 
 
 
@@ -158,9 +114,10 @@ void draw() {
     //player2.display(player2.playerDefault);
 
     //calling the direction function which contains keypress
-    player1.defaultImage(playerImg);
-    
-    player1.direction();
+    println((int)keyCode);
+    println(keyCode);
+    player1.inputPlayer();
+    player2.inputPlayer();
     
     //for displaying bullets
     for (int i = 0; i < bullets.size(); i++) {
@@ -208,7 +165,13 @@ void draw() {
 
 
 void keyReleased(){
-if( key == ' '){
+if( keyCode == UP){
 player1.shoot();
+}  
+  
+if( key == 'w'){
+player2.shoot();
 }
+
+
 }
