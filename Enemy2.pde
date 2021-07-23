@@ -24,12 +24,7 @@ void hitCheck() {
         newEn4 = loadImage("images/enemy.gif");
         loc = new PVector(random(600), random(-200, -100)); 
         enemies2.add(new Enemy2(loc, newEn1,  newEn2,  newEn3,  newEn4));
-
-        //vel=random(1, 1.5);
-        //println(this);
-        //background(255,0,0);
       }
     }
   }
-
 }

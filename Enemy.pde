@@ -1,7 +1,8 @@
 //Yashwant enemy class code here!
 class Enemy {
-  //image of enemy set in array
-  PImage[] enemy;
+  
+  PImage [] enemy;
+  
   // pimage for loading the images
   PImage myImage;
   PImage myImage1;
@@ -16,16 +17,17 @@ class Enemy {
   int coolingtime;
 
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
-    //array for 4 images 
+    
+    //array for 4 images
     enemy = new PImage[4];
-
+    
     //assinging the images
     enemy[0] = myImage;
     enemy[1] = myImage1;
     enemy[2] = myImage2;
     enemy[3] = myImage3;
 
-
+    //resisizing the enemies
     enemy[0].resize(50, 50);
     enemy[1].resize(50, 50);
     enemy[2].resize(50, 50);
@@ -45,11 +47,11 @@ class Enemy {
   }
 
 
-  public void Eanimate() {
+  public void Eanimate(PImage [] enemyImage) {
     //draw function of animation
-    image(enemy[x], this.loc.x, this.loc.y);
+    image(enemyImage[x], this.loc.x, this.loc.y);
 
-    //for somthness of animation
+    //for sess of animation
     if (frameCount%10==0) {
       x++;
       // to revert back to 0th image
@@ -60,6 +62,9 @@ class Enemy {
   }
 
   public void update() {
+    
+    Eanimate(enemy);
+    
     //giving speed in y direction
     this.loc.y += vel;
     //if enemy go down new enemy will come from top with random position and speed

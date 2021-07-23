@@ -192,7 +192,6 @@ void displayEnemies() {
   for (int i=0; i<enemies.size(); i++) {
     Enemy e = (Enemy) enemies.get(i); 
     //calling class function
-    e.Eanimate();
     e.update();
     e.shootE();
     e.hitCheck();
@@ -200,7 +199,7 @@ void displayEnemies() {
 }
 //creating 10 enemies in arraylist
 void createEnemy() {
-  for (int i=0; i<3; i++) {
+  for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
     enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
   }
@@ -211,7 +210,6 @@ void displayEnemies2() {
   for (int i=0; i<enemies2.size(); i++) {
     Enemy2 e2 = (Enemy2) enemies2.get(i); 
     //calling class function
-    e2.Eanimate();
     e2.update();
     e2.shootE();
     e2.hitCheck();
@@ -219,9 +217,9 @@ void displayEnemies2() {
 }
 //creating 10 enemies in arraylist
 void createEnemy2() {
-  for (int i=0; i<3; i++) {
+  for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
-    enemies2.add(new Enemy2(loc, myImage, myImage1, myImage2, myImage3));
+    enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
   }
 }
 
