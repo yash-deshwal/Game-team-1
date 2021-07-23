@@ -84,7 +84,7 @@ class Enemy {
     coolingtime++;
     //if coolingtime > 60 it will go down to 0 and then start again till 60 and it can be ay value 
     // why 60? to increase the gap between bullets
-    if (coolingtime>=60) {
+    if (coolingtime>=100) {
       bullets.add(bullet);
       //to avoid the continuos firing of bullets as it creates straight line
       coolingtime=0;

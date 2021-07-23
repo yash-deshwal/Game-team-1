@@ -34,6 +34,7 @@ int buttonHeight;
 ArrayList bullets;
 ArrayList enemies;
 ArrayList enemies2;
+ArrayList enemies3;
 //Enemy[] enemy;
 
 Player player1;
@@ -63,6 +64,11 @@ PImage newEn2;
 PImage newEn3; 
 PImage newEn4;
 
+PImage imgEn1; 
+PImage imgEn2; 
+PImage imgEn3; 
+PImage imgEn4;
+
 PVector loc;
 void setup() {
   size(800, 800);
@@ -73,6 +79,7 @@ void setup() {
   //initialising the enemy array
   enemies = new ArrayList();
   enemies2 = new ArrayList();
+  enemies3 = new ArrayList();
 
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
@@ -94,10 +101,16 @@ void setup() {
   myImage2 = loadImage("images/e3.png");
   myImage3 = loadImage("images/e4.png");
 
-  newEn1 = loadImage("images/enemy.gif"); 
-  newEn2 = loadImage("images/enemy.gif");
-  newEn3 = loadImage("images/enemy.gif");
-  newEn4 = loadImage("images/enemy.gif");
+  newEn1 = loadImage("images/en1.png"); 
+  newEn2 = loadImage("images/en2.png");
+  newEn3 = loadImage("images/en3.png");
+  newEn4 = loadImage("images/en4.png");
+  
+  imgEn1 = loadImage("images/ene1.png"); 
+  imgEn2 = loadImage("images/ene2.png");
+  imgEn3 = loadImage("images/ene3.png");
+  imgEn4 = loadImage("images/ene4.png");
+  
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -127,6 +140,7 @@ void setup() {
   // calling enemy create function
   createEnemy();
   createEnemy2();
+  createEnemy3();
 }
 
 
@@ -168,6 +182,7 @@ void draw() {
     //for displaying enemies
     displayEnemies();
     displayEnemies2();
+    displayEnemies3();
 
 
     //for displaying stars in the background.
@@ -220,6 +235,25 @@ void createEnemy2() {
   for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
     enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
+  }
+}
+
+
+//for displaying enemies
+void displayEnemies3() {
+  for (int i=0; i<enemies3.size(); i++) {
+    Enemy3 e3 = (Enemy3) enemies3.get(i); 
+    //calling class function
+    e3.update();
+    e3.shootE();
+    e3.hitCheck();
+  }
+}
+//creating 10 enemies in arraylist
+void createEnemy3() {
+  for (int i=0; i<1; i++) {
+    loc = new PVector(random(600), random(-200, -100)); 
+    enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
   }
 }
 
