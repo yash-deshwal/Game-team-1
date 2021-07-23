@@ -105,12 +105,12 @@ void setup() {
   newEn2 = loadImage("images/en2.png");
   newEn3 = loadImage("images/en3.png");
   newEn4 = loadImage("images/en4.png");
-  
+
   imgEn1 = loadImage("images/ene1.png"); 
   imgEn2 = loadImage("images/ene2.png");
   imgEn3 = loadImage("images/ene3.png");
   imgEn4 = loadImage("images/ene4.png");
-  
+
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -297,7 +297,7 @@ void keyReleased() {
     player1.shoot();
   }  
 
-  if ( key == 'w') {
+  if ( key == 'a' || key == 'd') {
     player2.shoot();
   }
 }

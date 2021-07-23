@@ -1,8 +1,8 @@
 //Yashwant enemy class code here!
 class Enemy {
-  
+
   PImage [] enemy;
-  
+
   // pimage for loading the images
   PImage myImage;
   PImage myImage1;
@@ -17,10 +17,10 @@ class Enemy {
   int coolingtime;
 
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
-    
+
     //array for 4 images
     enemy = new PImage[4];
-    
+
     //assinging the images
     enemy[0] = myImage;
     enemy[1] = myImage1;
@@ -43,7 +43,7 @@ class Enemy {
     //for animation ++
     x=0;
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
-    coolingtime = 100;
+    coolingtime = 0;
   }
 
 
@@ -62,9 +62,9 @@ class Enemy {
   }
 
   public void update() {
-    
+
     Eanimate(enemy);
-    
+
     //giving speed in y direction
     this.loc.y += vel;
     //if enemy go down new enemy will come from top with random position and speed
