@@ -8,6 +8,7 @@
 //So the movement works fine but only 1 player can move at a time shooting works fine
 //if we move left or right and then fire it goes back to default image(space shooter)
 //if we keep pressing space bar then it creates a line effect (bullets) => solution We used keyReleased instead of keyPress.
+//after inheritance the child class copies the parent but it doesn't show up immediately as soon as we kill enemy the new enemy starts popping.
 //*****************************Bug******************************
 
 //***********************************Changes****************************************
@@ -31,8 +32,9 @@ int buttonWidth;
 int buttonHeight;
 
 ArrayList bullets;
-
-Enemy[] enemy;
+ArrayList enemies;
+ArrayList enemies2;
+//Enemy[] enemy;
 
 Player player1;
 Player player2;
@@ -51,12 +53,26 @@ PImage player2ImgL2;
 PImage player2ImgR1;
 PImage player2ImgR2;
 
+PImage myImage; 
+PImage myImage1; 
+PImage myImage2; 
+PImage myImage3;
+
+PImage newEn1; 
+PImage newEn2; 
+PImage newEn3; 
+PImage newEn4;
+
+PVector loc;
 void setup() {
   size(800, 800);
   //initial value of stage 
   stage=1;
 
   bullets = new ArrayList();
+  //initialising the enemy array
+  enemies = new ArrayList();
+  enemies2 = new ArrayList();
 
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
@@ -70,7 +86,18 @@ void setup() {
   player2ImgL2 = loadImage("images/pl12.png");
   player2ImgR1 = loadImage("images/plr1.png");
   player2ImgR2 = loadImage("images/plr2.png");
-
+  
+  
+  // loading all 4 images for enemy animation
+    myImage = loadImage("images/e1.png"); 
+    myImage1 = loadImage("images/e2.png");
+    myImage2 = loadImage("images/e3.png");
+    myImage3 = loadImage("images/e4.png");
+    
+        newEn1 = loadImage("images/enemy.gif"); 
+        newEn2 = loadImage("images/enemy.gif");
+        newEn3 = loadImage("images/enemy.gif");
+        newEn4 = loadImage("images/enemy.gif");
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -80,13 +107,7 @@ void setup() {
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1);
   player2 = new Player(100, 600,  player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2);
 
-  //initialising the enemy array
-  enemy = new Enemy[7];
-
-  //creating new objects of enemies
-  for (int i=0; i<enemy.length; i++) {
-    enemy[i] = new Enemy();
-  }
+  
 
   //initialising the stars array
   stars = new Star[1000];
@@ -103,6 +124,9 @@ void setup() {
 
   buttonWidth = 150;
   buttonHeight = 70;
+ // calling enemy create function
+   createEnemy();
+   createEnemy2();
 }
 
 
@@ -145,6 +169,8 @@ void draw() {
 
     //for displaying enemies
     displayEnemies();
+   displayEnemies2();
+   
 
     //for displaying stars in the background.
     displayStars();
@@ -165,12 +191,42 @@ void displayBullets() {
 
 //for displaying enemies
 void displayEnemies() {
-  for (int i=0; i<enemy.length; i++) {
-    enemy[i].Eanimate();
-    enemy[i].update();
-    enemy[i].shootE();
+  for (int i=0; i<enemies.size(); i++) {
+     Enemy e = (Enemy) enemies.get(i); 
+     //calling class function
+    e.Eanimate();
+    e.update();
+    e.shootE();
+    e.hitCheck();
   }
 }
+//creating 10 enemies in arraylist
+void createEnemy(){
+for (int i=0; i<3; i++) {
+ loc = new PVector(random(600), random(-200, -100)); 
+enemies.add(new Enemy(loc,myImage, myImage1, myImage2, myImage3));
+}
+}
+
+//for displaying enemies
+void displayEnemies2() {
+  for (int i=0; i<enemies2.size(); i++) {
+     Enemy2 e2 = (Enemy2) enemies2.get(i); 
+     //calling class function
+    e2.Eanimate2();
+    e2.update();
+    e2.shootE();
+    e2.hitCheck();
+  }
+}
+//creating 10 enemies in arraylist
+void createEnemy2(){
+for (int i=0; i<3; i++) {
+ loc = new PVector(random(600), random(-200, -100)); 
+enemies2.add(new Enemy2(loc,myImage, myImage1, myImage2, myImage3));
+}
+}
+
 
 //for displaying stars
 void displayStars() {
@@ -207,7 +263,7 @@ void menu() {
 
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
-  if ( keyCode == UP) {
+  if ( keyCode == LEFT||keyCode ==RIGHT) {
     player1.shoot();
   }  
 
