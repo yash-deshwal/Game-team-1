@@ -14,6 +14,7 @@
 //inherit enemy class to one another enemy
 //change enemy class to oop
 //input of speed using arrays in the constructor => done!
+//update the movement code and add boolean array so that both the players move together. refer to the video that was shared.
 
 //for switching the screen
 int stage;
