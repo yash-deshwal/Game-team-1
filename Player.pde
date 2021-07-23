@@ -122,6 +122,6 @@ class Player {
   public void shoot() {
     // creating new object of bullet at player location and changing color as well giving velocity
     Bullet bullet = new Bullet(position.x+50, position.y, -5, true);
-    bullets.add(bullet);
+    gamePlay.bullets.add(bullet);
   }
 }

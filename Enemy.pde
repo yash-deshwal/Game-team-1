@@ -85,27 +85,28 @@ class Enemy {
     //if coolingtime > 60 it will go down to 0 and then start again till 60 and it can be ay value 
     // why 60? to increase the gap between bullets
     if (coolingtime>=100) {
-      bullets.add(bullet);
+      gamePlay.bullets.add(bullet);
       //to avoid the continuos firing of bullets as it creates straight line
       coolingtime=0;
     }
   }
 
   void hitCheck() {
-    for (int i = 0; i < bullets.size(); i++) {
-      Bullet b = (Bullet) bullets.get(i);
+    for (int i = 0; i < gamePlay.bullets.size(); i++) {
+      Bullet b = (Bullet) gamePlay.bullets.get(i);
       float distBetween = dist(b.x, b.y, this.loc.x, this.loc.y);
       // if (this.loc.y+40> b.x && this.loc.x+40> b.y && this.loc.y+40> b.y && this.loc.x+40> b.y
       if (distBetween < 50 && b.velocity < 0) {
 
-        enemies.remove(this);
+        gamePlay.enemies.remove(this);
 
-        myImage = loadImage("images/e1.png"); 
-        myImage1 = loadImage("images/e2.png");
-        myImage2 = loadImage("images/e3.png");
-        myImage3 = loadImage("images/e4.png");
+        gamePlay.myImage = loadImage("images/e1.png"); 
+        gamePlay.myImage1 = loadImage("images/e2.png");
+        gamePlay.myImage2 = loadImage("images/e3.png");
+        gamePlay.myImage3 = loadImage("images/e4.png");
+        
         loc = new PVector(random(600), random(-200, -100)); 
-        enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+        gamePlay.enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
 
         //vel=random(1, 1.5);
         //println(this);
