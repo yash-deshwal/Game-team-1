@@ -2,7 +2,6 @@
 class Enemy {
   //image of enemy set in array
   PImage[] enemy;
-   PImage[] enemy2;
   // pimage for loading the images
   PImage myImage;
   PImage myImage1;
@@ -19,18 +18,13 @@ class Enemy {
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
     //array for 4 images 
     enemy = new PImage[4];
-    enemy2 = new PImage[4];
 
     //assinging the images
     enemy[0] = myImage;
     enemy[1] = myImage1;
     enemy[2] = myImage2;
     enemy[3] = myImage3;
-    
-    enemy2[0] = newEn1;
-    enemy2[1] = newEn2;
-    enemy2[2] = newEn3;
-    enemy2[3] = newEn4;
+
 
     enemy[0].resize(50, 50);
     enemy[1].resize(50, 50);
@@ -54,31 +48,16 @@ class Enemy {
   public void Eanimate() {
     //draw function of animation
     image(enemy[x], this.loc.x, this.loc.y);
-   
-    //for somthness of animation
-    if (frameCount%10==0) {
-      x++;
-      // to revert back to 0th image
-      if (x>enemy.length-1) {
-        x=0;
-      }
-    }
-  }
-  
-  public void Eanimate2() {
-    //draw function of animation
-    
-    image(enemy2[x], this.loc.x, this.loc.y);
-    //for somthness of animation
-    if (frameCount%10==0) {
-      x++;
-      // to revert back to 0th image
-      if (x>enemy.length-1) {
-        x=0;
-      }
-    }
-  }
 
+    //for somthness of animation
+    if (frameCount%10==0) {
+      x++;
+      // to revert back to 0th image
+      if (x>enemy.length-1) {
+        x=0;
+      }
+    }
+  }
 
   public void update() {
     //giving speed in y direction
@@ -115,7 +94,7 @@ class Enemy {
       if (distBetween < 50 && b.velocity < 0) {
 
         enemies.remove(this);
-        
+
         myImage = loadImage("images/e1.png"); 
         myImage1 = loadImage("images/e2.png");
         myImage2 = loadImage("images/e3.png");

@@ -80,24 +80,24 @@ void setup() {
   playerImgL2 = loadImage("images/plleft2.png");
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
-  
+
   player2Img = loadImage("images/d.png");
   player2ImgL1 = loadImage("images/pll1.png");
   player2ImgL2 = loadImage("images/pl12.png");
   player2ImgR1 = loadImage("images/plr1.png");
   player2ImgR2 = loadImage("images/plr2.png");
-  
-  
+
+
   // loading all 4 images for enemy animation
-    myImage = loadImage("images/e1.png"); 
-    myImage1 = loadImage("images/e2.png");
-    myImage2 = loadImage("images/e3.png");
-    myImage3 = loadImage("images/e4.png");
-    
-        newEn1 = loadImage("images/enemy.gif"); 
-        newEn2 = loadImage("images/enemy.gif");
-        newEn3 = loadImage("images/enemy.gif");
-        newEn4 = loadImage("images/enemy.gif");
+  myImage = loadImage("images/e1.png"); 
+  myImage1 = loadImage("images/e2.png");
+  myImage2 = loadImage("images/e3.png");
+  myImage3 = loadImage("images/e4.png");
+
+  newEn1 = loadImage("images/enemy.gif"); 
+  newEn2 = loadImage("images/enemy.gif");
+  newEn3 = loadImage("images/enemy.gif");
+  newEn4 = loadImage("images/enemy.gif");
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -105,9 +105,9 @@ void setup() {
 
   //Creating 2 new objects of player.
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1);
-  player2 = new Player(100, 600,  player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2);
+  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2);
 
-  
+
 
   //initialising the stars array
   stars = new Star[1000];
@@ -124,9 +124,9 @@ void setup() {
 
   buttonWidth = 150;
   buttonHeight = 70;
- // calling enemy create function
-   createEnemy();
-   createEnemy2();
+  // calling enemy create function
+  createEnemy();
+  createEnemy2();
 }
 
 
@@ -146,9 +146,7 @@ void draw() {
       //this is a sort of collision detection with button's width and height to mouse pointer.
       if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
         stage = 2;
-      }
-
-      else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
+      } else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
         stage = 4;
       }
     }
@@ -169,8 +167,8 @@ void draw() {
 
     //for displaying enemies
     displayEnemies();
-   displayEnemies2();
-   
+    displayEnemies2();
+
 
     //for displaying stars in the background.
     displayStars();
@@ -192,8 +190,8 @@ void displayBullets() {
 //for displaying enemies
 void displayEnemies() {
   for (int i=0; i<enemies.size(); i++) {
-     Enemy e = (Enemy) enemies.get(i); 
-     //calling class function
+    Enemy e = (Enemy) enemies.get(i); 
+    //calling class function
     e.Eanimate();
     e.update();
     e.shootE();
@@ -201,30 +199,30 @@ void displayEnemies() {
   }
 }
 //creating 10 enemies in arraylist
-void createEnemy(){
-for (int i=0; i<3; i++) {
- loc = new PVector(random(600), random(-200, -100)); 
-enemies.add(new Enemy(loc,myImage, myImage1, myImage2, myImage3));
-}
+void createEnemy() {
+  for (int i=0; i<3; i++) {
+    loc = new PVector(random(600), random(-200, -100)); 
+    enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+  }
 }
 
 //for displaying enemies
 void displayEnemies2() {
   for (int i=0; i<enemies2.size(); i++) {
-     Enemy2 e2 = (Enemy2) enemies2.get(i); 
-     //calling class function
-    e2.Eanimate2();
+    Enemy2 e2 = (Enemy2) enemies2.get(i); 
+    //calling class function
+    e2.Eanimate();
     e2.update();
     e2.shootE();
     e2.hitCheck();
   }
 }
 //creating 10 enemies in arraylist
-void createEnemy2(){
-for (int i=0; i<3; i++) {
- loc = new PVector(random(600), random(-200, -100)); 
-enemies2.add(new Enemy2(loc,myImage, myImage1, myImage2, myImage3));
-}
+void createEnemy2() {
+  for (int i=0; i<3; i++) {
+    loc = new PVector(random(600), random(-200, -100)); 
+    enemies2.add(new Enemy2(loc, myImage, myImage1, myImage2, myImage3));
+  }
 }
 
 
