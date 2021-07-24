@@ -131,13 +131,25 @@ class Player {
   }
 
   void drawp1HealthBar() {
-
+    
+  // Change color
+  if (health < 3)
+  {
+    fill(255, 0, 0);
+  }  
+  else if (health < 6)
+  {
+    fill(255, 200, 0);
+  }
+  else
+  {
     fill(0, 255, 0);
+  }
     noStroke();
     rect(HealthBarloc.x, HealthBarloc.y, map(health, 0, 10, 0, 200), 19);
 
     noFill();
-    stroke(2);
+    stroke(255);
     rect(HealthBarloc.x, HealthBarloc.y, 200, 19);
   }
 
