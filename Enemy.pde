@@ -102,9 +102,8 @@ class Enemy {
   void hitCheck() {
     for (int i = 0; i < bullets.size(); i++) {
       Bullet b = (Bullet) bullets.get(i);
-      float distBetween = dist(b.x, b.y, this.loc.x, this.loc.y);
-      // if (this.loc.y+40> b.x && this.loc.x+40> b.y && this.loc.y+40> b.y && this.loc.x+40> b.y
-      if (distBetween < 50 && b.velocity < 0) {
+     
+      if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ){
 
         enemies.remove(this);
 

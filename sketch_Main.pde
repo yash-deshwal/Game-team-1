@@ -75,8 +75,7 @@ PImage imgEn4;
 
 PVector loc;
 
-HealthBar healthBar1;
-HealthBar healthBar2;
+
 
 PVector locHealthBar1;
 PVector locHealthBar2;
@@ -132,9 +131,12 @@ void setup() {
   int [] playerControl1 = {37, 39};
   int [] playerControl2 = {65, 68};
 
+ locHealthBar1 = new PVector(10,760);
+  
+  locHealthBar2 = new PVector(590,760);
   //Creating 2 new objects of player.
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1);
-  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2);
+  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1,locHealthBar1);
+  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2,locHealthBar2);
 
 
 
@@ -158,21 +160,13 @@ void setup() {
   createEnemy();
   createEnemy2();
   createEnemy3();
-<<<<<<< HEAD
 
-=======
   
-  locHealthBar1 = new PVector(10,760);
+ 
   
-  health = 10;
   
-  healthBar1 = new HealthBar(locHealthBar1,map(health, 0, 10, 0, 200),19);
   
-  locHealthBar2 = new PVector(590,760);
   
-  healthBar2 = new HealthBar(locHealthBar2,map(health, 0, 10, 0, 200),19);
-  
->>>>>>> 19f33e42262d5cd47fac9917c0490319b1aeff74
 }
 
 
@@ -192,7 +186,10 @@ void draw() {
       //this is a sort of collision detection with button's width and height to mouse pointer.
       if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
         stage = 2;
-      } else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
+      } else if(controlsButton.x + buttonWidth >= mouseX && controlsButton.y + buttonHeight >= mouseY){
+        stage =3;
+      }
+      else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
         stage = 4;
       }
     }
@@ -209,23 +206,34 @@ void draw() {
     player2.inputPlayer();
     player1.hitCheck();
     player2.hitCheck();
-
+    player1.drawp1HealthBar();
+    player2.drawp1HealthBar();
     //for displaying bullets
     displayBullets();
 
     //for displaying enemies
     displayEnemies();
 
-    displayEnemies2();
-    displayEnemies3();
+   displayEnemies2();
+   displayEnemies3();
     
-    healthBar1.drawHealthBar();
-    healthBar2.drawHealthBar();
+    
 
 
 
     //for displaying stars in the background.
     displayStars();
+  }
+  if(stage== 3){
+   
+    if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
+        stage = 2;
+      }
+    clear();
+    background(0);
+      textAlign(CENTER);
+      text("Use left and right key to move and fire for player ",width/2,height/2);
+      text("and for player to 'A' &'D'.", 500,500);
   }
   if (stage == 4) {
     exit();
