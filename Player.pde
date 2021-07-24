@@ -21,6 +21,7 @@ class Player {
 
   //for frameCount
   int count;
+  
 
   public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys) {
 
@@ -123,5 +124,20 @@ class Player {
     // creating new object of bullet at player location and changing color as well giving velocity
     Bullet bullet = new Bullet(position.x+50, position.y, -5, true);
     bullets.add(bullet);
+  }
+  
+  
+  void hitCheck() {
+    for (int i = 0; i < bullets.size(); i++) {
+      Bullet b = (Bullet) bullets.get(i);
+      float distBetween = dist(b.x, b.y, position.x, position.y);
+      // if (this.loc.y+40> b.x && this.loc.x+40> b.y && this.loc.y+40> b.y && this.loc.x+40> b.y
+      if (distBetween < 50 && b.velocity > 0) {
+
+   
+
+
+      }
+    }
   }
 }

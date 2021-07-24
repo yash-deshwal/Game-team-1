@@ -12,11 +12,10 @@ class Bullet {
   }
 
   void display() {
-    if(col){
+    if (col) {
       fill(0, 255, 0);
-    }
-    else{
-    fill(255, 255,0);
+    } else {
+      fill(255, 255, 0);
     }
     rect(this.x, this.y, 5, 20);
   }

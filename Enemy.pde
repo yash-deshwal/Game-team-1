@@ -1,8 +1,10 @@
 //Yashwant enemy class code here!
 class Enemy {
-  //image of enemy set in array
-  PImage[] enemy;
-   PImage[] enemy2;
+
+
+  PImage [] enemy;
+
+
   // pimage for loading the images
   PImage myImage;
   PImage myImage1;
@@ -17,20 +19,20 @@ class Enemy {
   int coolingtime;
 
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
-    //array for 4 images 
+
+
+    //array for 4 images
     enemy = new PImage[4];
-    enemy2 = new PImage[4];
+
 
     //assinging the images
     enemy[0] = myImage;
     enemy[1] = myImage1;
     enemy[2] = myImage2;
     enemy[3] = myImage3;
-    
-    enemy2[0] = newEn1;
-    enemy2[1] = newEn2;
-    enemy2[2] = newEn3;
-    enemy2[3] = newEn4;
+
+
+    //resisizing the enemies
 
     enemy[0].resize(50, 50);
     enemy[1].resize(50, 50);
@@ -47,15 +49,17 @@ class Enemy {
     //for animation ++
     x=0;
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
-    coolingtime = 100;
+    coolingtime = 0;
   }
 
 
-  public void Eanimate() {
+  public void Eanimate(PImage [] enemyImage) {
     //draw function of animation
-    image(enemy[x], this.loc.x, this.loc.y);
-   
-    //for somthness of animation
+
+    image(enemyImage[x], this.loc.x, this.loc.y);
+
+    //for sess of animation
+
     if (frameCount%10==0) {
       x++;
       // to revert back to 0th image
@@ -64,23 +68,11 @@ class Enemy {
       }
     }
   }
-  
-  public void Eanimate2() {
-    //draw function of animation
-    
-    image(enemy2[x], this.loc.x, this.loc.y);
-    //for somthness of animation
-    if (frameCount%10==0) {
-      x++;
-      // to revert back to 0th image
-      if (x>enemy.length-1) {
-        x=0;
-      }
-    }
-  }
-
 
   public void update() {
+
+    Eanimate(enemy);
+
     //giving speed in y direction
     this.loc.y += vel;
     //if enemy go down new enemy will come from top with random position and speed
@@ -100,7 +92,7 @@ class Enemy {
     coolingtime++;
     //if coolingtime > 60 it will go down to 0 and then start again till 60 and it can be ay value 
     // why 60? to increase the gap between bullets
-    if (coolingtime>=60) {
+    if (coolingtime>=100) {
       bullets.add(bullet);
       //to avoid the continuos firing of bullets as it creates straight line
       coolingtime=0;
@@ -115,7 +107,9 @@ class Enemy {
       if (distBetween < 50 && b.velocity < 0) {
 
         enemies.remove(this);
-        
+
+
+
         myImage = loadImage("images/e1.png"); 
         myImage1 = loadImage("images/e2.png");
         myImage2 = loadImage("images/e3.png");
@@ -123,9 +117,7 @@ class Enemy {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
 
-        //vel=random(1, 1.5);
-        //println(this);
-        //background(255,0,0);
+
       }
     }
   }
