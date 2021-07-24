@@ -15,17 +15,14 @@ class Enemy2 extends Enemy {
       if (distBetween < 50 && b.velocity < 0) {
 
         enemies2.remove(this);
-
-
         newEn1 = loadImage("images/en1.png"); 
         newEn2 = loadImage("images/en2.png");
         newEn3 = loadImage("images/en3.png");
         newEn4 = loadImage("images/en4.png");
-        
+
         loc = new PVector(random(600), random(-200, -100)); 
         enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
       }
     }
   }
-
 }

@@ -12,7 +12,6 @@ class Enemy3 extends Enemy {
       if (distBetween < 50 && b.velocity < 0) {
 
         enemies3.remove(this);
-
         imgEn1 = loadImage("images/ene1.png"); 
         imgEn2 = loadImage("images/ene2.png");
         imgEn3 = loadImage("images/ene3.png");
