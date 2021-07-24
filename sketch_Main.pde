@@ -97,11 +97,11 @@ void setup() {
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
 
-  player2Img = loadImage("images/d.png");
-  player2ImgL1 = loadImage("images/pll1.png");
-  player2ImgL2 = loadImage("images/pl12.png");
-  player2ImgR1 = loadImage("images/plr1.png");
-  player2ImgR2 = loadImage("images/plr2.png");
+  //player2Img = loadImage("images/d.png");
+  //player2ImgL1 = loadImage("images/pll1.png");
+  //player2ImgL2 = loadImage("images/pl12.png");
+  //player2ImgR1 = loadImage("images/plr1.png");
+  //player2ImgR2 = loadImage("images/plr2.png");
 
   // loading all 4 images for enemy animation
   myImage = loadImage("images/e1.png"); 
@@ -129,7 +129,7 @@ void setup() {
   locHealthBar2 = new PVector(590, 760);
   //Creating 2 new objects of player.
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1);
-  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2, locHealthBar2);
+  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2);
 
   //initialising the stars array
   stars = new Star[1000];
