@@ -13,10 +13,10 @@ class Enemy3 extends Enemy {
 
         enemies3.remove(this);
 
-        imgEn1 = loadImage("images/en1.png"); 
-        imgEn2 = loadImage("images/en2.png");
-        imgEn3 = loadImage("images/en3.png");
-        imgEn4 = loadImage("images/en4.png");
+        imgEn1 = loadImage("images/ene1.png"); 
+        imgEn2 = loadImage("images/ene2.png");
+        imgEn3 = loadImage("images/ene3.png");
+        imgEn4 = loadImage("images/ene4.png");
 
         loc = new PVector(random(600), random(-200, -100)); 
         enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
