@@ -66,16 +66,12 @@ PImage newEn2;
 PImage newEn3; 
 PImage newEn4;
 
-
 PImage imgEn1; 
 PImage imgEn2; 
 PImage imgEn3; 
 PImage imgEn4;
 
-
 PVector loc;
-
-
 
 PVector locHealthBar1;
 PVector locHealthBar2;
@@ -94,7 +90,6 @@ void setup() {
 
   enemies3 = new ArrayList();
 
-
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
   playerImgL1 = loadImage("images/plleft1.png");
@@ -107,8 +102,6 @@ void setup() {
   player2ImgL2 = loadImage("images/pl12.png");
   player2ImgR1 = loadImage("images/plr1.png");
   player2ImgR2 = loadImage("images/plr2.png");
-
-
 
   // loading all 4 images for enemy animation
   myImage = loadImage("images/e1.png"); 
@@ -131,14 +124,12 @@ void setup() {
   int [] playerControl1 = {37, 39};
   int [] playerControl2 = {65, 68};
 
- locHealthBar1 = new PVector(10,760);
-  
-  locHealthBar2 = new PVector(590,760);
+  locHealthBar1 = new PVector(10, 760);
+
+  locHealthBar2 = new PVector(590, 760);
   //Creating 2 new objects of player.
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1,locHealthBar1);
-  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2,locHealthBar2);
-
-
+  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1);
+  player2 = new Player(100, 600, player2Img, player2ImgL1, player2ImgL2, player2ImgR1, player2ImgR2, playerControl2, locHealthBar2);
 
   //initialising the stars array
   stars = new Star[1000];
@@ -160,13 +151,6 @@ void setup() {
   createEnemy();
   createEnemy2();
   createEnemy3();
-
-  
- 
-  
-  
-  
-  
 }
 
 
@@ -186,10 +170,7 @@ void draw() {
       //this is a sort of collision detection with button's width and height to mouse pointer.
       if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
         stage = 2;
-      } else if(controlsButton.x + buttonWidth >= mouseX && controlsButton.y + buttonHeight >= mouseY){
-        stage =3;
-      }
-      else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
+      } else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
         stage = 4;
       }
     }
@@ -214,26 +195,11 @@ void draw() {
     //for displaying enemies
     displayEnemies();
 
-   displayEnemies2();
-   displayEnemies3();
-    
-    
-
-
+    displayEnemies2();
+    displayEnemies3();
 
     //for displaying stars in the background.
     displayStars();
-  }
-  if(stage== 3){
-   
-    if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
-        stage = 2;
-      }
-    clear();
-    background(0);
-      textAlign(CENTER);
-      text("Use left and right key to move and fire for player ",width/2,height/2);
-      text("and for player to 'A' &'D'.", 500,500);
   }
   if (stage == 4) {
     exit();
@@ -303,7 +269,6 @@ void createEnemy3() {
     loc = new PVector(random(600), random(-200, -100)); 
     enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
   }
-
 }
 
 
@@ -317,8 +282,6 @@ void displayStars() {
     stars[i].animate();
   }
 }
-
-
 
 void menu() {
 
@@ -338,7 +301,6 @@ void menu() {
   quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
   quit.drawButton();
 }
-
 
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
