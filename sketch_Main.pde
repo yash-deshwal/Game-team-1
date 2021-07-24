@@ -74,6 +74,15 @@ PImage imgEn4;
 
 
 PVector loc;
+
+HealthBar healthBar1;
+HealthBar healthBar2;
+
+PVector locHealthBar1;
+PVector locHealthBar2;
+
+int health;
+
 void setup() {
   size(800, 800);
   //initial value of stage 
@@ -149,7 +158,21 @@ void setup() {
   createEnemy();
   createEnemy2();
   createEnemy3();
+<<<<<<< HEAD
 
+=======
+  
+  locHealthBar1 = new PVector(10,760);
+  
+  health = 10;
+  
+  healthBar1 = new HealthBar(locHealthBar1,map(health, 0, 10, 0, 200),19);
+  
+  locHealthBar2 = new PVector(590,760);
+  
+  healthBar2 = new HealthBar(locHealthBar2,map(health, 0, 10, 0, 200),19);
+  
+>>>>>>> 19f33e42262d5cd47fac9917c0490319b1aeff74
 }
 
 
@@ -195,6 +218,9 @@ void draw() {
 
     displayEnemies2();
     displayEnemies3();
+    
+    healthBar1.drawHealthBar();
+    healthBar2.drawHealthBar();
 
 
 
