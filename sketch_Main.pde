@@ -4,7 +4,6 @@
 //Not able to control both the players at once
 //Animation is not upto the mark it overlaps when we move left or right => solution We used else statement inside the input function instead of directly displaying it to main function
 //Enemies are overlapping.
-//Change enemies to arraylist
 //So the movement works fine but only 1 player can move at a time shooting works fine
 //if we move left or right and then fire it goes back to default image(space shooter)
 //if we keep pressing space bar then it creates a line effect (bullets) => solution We used keyReleased instead of keyPress.
@@ -23,10 +22,12 @@ int stage;
 Button play;
 Button controls;
 Button quit;
+Button play2;
 
 PVector playButton;
 PVector controlsButton;
 PVector quitButton;
+PVector play2Button;
 
 int buttonWidth;
 int buttonHeight;
@@ -76,7 +77,6 @@ PVector loc;
 PVector locHealthBar1;
 PVector locHealthBar2;
 
-int health;
 
 void setup() {
   size(800, 800);
@@ -143,6 +143,7 @@ void setup() {
   playButton = new PVector(width/2-60, height/2-100);
   controlsButton = new PVector(width/2-60, height/2);
   quitButton = new PVector(width/2-60, height/2+100);
+  play2Button = new PVector(600, 600);
 
   buttonWidth = 150;
   buttonHeight = 70;
@@ -168,9 +169,11 @@ void draw() {
     //stage = 2 is the actual gameplay
     if (mousePressed) {
       //this is a sort of collision detection with button's width and height to mouse pointer.
-      if (playButton.x + buttonWidth >= mouseX && playButton.y + buttonHeight >= mouseY) {
+      if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
         stage = 2;
-      } else if (quitButton.x + buttonWidth >= mouseX && quitButton.y + buttonHeight >= mouseY) {
+      } else if (controlsButton.x + buttonWidth >= mouseX && mouseX >= controlsButton.x && controlsButton.y + buttonHeight >= mouseY && mouseY >= controlsButton.y) {
+        stage = 3;
+      } else if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && quitButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
         stage = 4;
       }
     }
@@ -194,12 +197,40 @@ void draw() {
 
     //for displaying enemies
     displayEnemies();
-
     displayEnemies2();
     displayEnemies3();
 
     //for displaying stars in the background.
     displayStars();
+  }
+  if (stage == 3) {
+    clear();
+    background(0);
+
+    fill(255);
+    text("w shoot", 400, 150);
+
+
+    //creating new object of button
+    play2 = new Button("Play", play2Button, buttonWidth, buttonHeight);
+    play2.drawButton();
+
+    //if (mousePressed) {
+
+    //}
+    //}
+    //}
+
+    //for displaying stars in the background.
+    displayStars();
+    
+    if (mousePressed){
+      if (play2Button.x + buttonWidth >= mouseX && mouseX >= play2Button.x && play2Button.y + buttonHeight >= mouseY && mouseY >= play2Button.y) {
+      //gamePlay
+      stage = 2;
+      }
+    }
+    
   }
   if (stage == 4) {
     exit();
@@ -301,6 +332,7 @@ void menu() {
   quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
   quit.drawButton();
 }
+
 
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
