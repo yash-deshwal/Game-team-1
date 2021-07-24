@@ -151,7 +151,7 @@ class Player {
       {
 
         health--;
-        println(health);
+        //println(health);
         health=constrain(health, 0, 10);
         if (health==0) {
           this.position.x=-100;
