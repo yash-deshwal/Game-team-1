@@ -22,12 +22,12 @@ int stage;
 Button play;
 Button controls;
 Button quit;
-Button play2;
+Button back;
 
 PVector playButton;
 PVector controlsButton;
 PVector quitButton;
-PVector play2Button;
+PVector backButton;
 
 int buttonWidth;
 int buttonHeight;
@@ -143,7 +143,7 @@ void setup() {
   playButton = new PVector(width/2-60, height/2-100);
   controlsButton = new PVector(width/2-60, height/2);
   quitButton = new PVector(width/2-60, height/2+100);
-  play2Button = new PVector(600, 600);
+  backButton = new PVector(50, 600);
 
   buttonWidth = 150;
   buttonHeight = 70;
@@ -209,25 +209,29 @@ void draw() {
 
     fill(255);
     text("w shoot", 400, 150);
+    
+    playButton = new PVector(600, 600);
+    
+    play = new Button("Play", playButton, buttonWidth, buttonHeight);
+    play.drawButton();
 
 
     //creating new object of button
-    play2 = new Button("Play", play2Button, buttonWidth, buttonHeight);
-    play2.drawButton();
+    back = new Button("Back", backButton, buttonWidth, buttonHeight);
+    back.drawButton();
 
-    //if (mousePressed) {
-
-    //}
-    //}
-    //}
 
     //for displaying stars in the background.
     displayStars();
     
     if (mousePressed){
-      if (play2Button.x + buttonWidth >= mouseX && mouseX >= play2Button.x && play2Button.y + buttonHeight >= mouseY && mouseY >= play2Button.y) {
+      if (backButton.x + buttonWidth >= mouseX && mouseX >= backButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= backButton.y) {
       //gamePlay
-      stage = 2;
+      stage = 1;
+      playButton = new PVector(width/2-60, height/2-100);
+      
+      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
+        stage = 2;
       }
     }
     
