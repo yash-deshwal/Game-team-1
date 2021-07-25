@@ -1,3 +1,6 @@
+//Finish with player 2 
+//do same for enemy and bullets
+
 //Rudra write your code here!
 class Player {
 
@@ -5,6 +8,8 @@ class Player {
   PImage playerDefault;
   PImage [] playerLeft;
   PImage [] playerRight;
+  
+  PImage [] playerImages;
 
   PVector position;
 
@@ -89,20 +94,51 @@ class Player {
   }
 
   //for animatiom 
-  public void display(PImage[] pimage) {
+  public void display(int index1, int index2) {
     //Displaying the image
-    image(pimage[index], position.x, position.y);
+    image( playerImages[index], position.x, position.y);
     //for smooth animation
     if (frameCount%count==0) {
       //incrementing index so that it moves to next image
       index++;
       //if statement to return index back to 0 i.e 1st image so that it animates.
-      if (index>pimage.length-1) {
-        index=0;
+      if (index> index2) {
+        index = index1;
       }
     }
   }
-
+  
+  
+  //Make another load Images class using loadImages functions.
+  //add another arguement 
+  //find about static class.
+  
+  public void loadImages(String path){
+    
+    int index = 0;
+    
+    File folder = new File(path);
+   File[] listOfFiles = folder.listFiles();
+   playerImages = new PImage[listOfFiles.length];
+    for (File fileName : listOfFiles) {
+      if (fileName.isFile()) {
+        // System.out.println(fileName.getName());
+         playerImages[index++] = loadImage(path+fileName.getName());
+         
+      }
+    }
+    
+    
+     //loading images for players here.
+  //playerImg = loadImage(path);
+  //playerImgL1 = loadImage("images/plleft1.png");
+  //playerImgL2 = loadImage("images/plleft2.png");
+  //playerImgR1 = loadImage("images/plright1.png");
+  //playerImgR2 = loadImage("images/plright2.png");
+  
+  }
+  
+  
   public void displayPlayerText() {
     textSize(15);
     fill(180);
@@ -113,11 +149,11 @@ class Player {
   public void inputPlayer() {
     //if (keyPressed){
     if (keyCode == keyCodes[0]) {
-      display(playerLeft);
+      display(1,2);
       position.x -= velocity;
       displayPlayerText();
     } else if (keyCode == keyCodes[1]) {
-      display(playerRight);
+      display(3,4);
       position.x += velocity;
       displayPlayerText();
     } else {

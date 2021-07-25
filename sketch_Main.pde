@@ -16,6 +16,16 @@
 //input of speed using arrays in the constructor => done!
 //update the movement code and add boolean array so that both the players move together. refer to the video that was shared.
 
+
+//HealthBar moves with the player
+
+//*************************OOP************************
+//create another
+
+
+
+
+
 //for switching the screen
 int stage;
 
@@ -33,9 +43,9 @@ int buttonWidth;
 int buttonHeight;
 
 ArrayList bullets;
+
 ArrayList enemies;
 ArrayList enemies2;
-
 ArrayList enemies3;
 
 //Enemy[] enemy;
@@ -103,11 +113,11 @@ void setup() {
   enemies3 = new ArrayList();
 
   //loading images for players here.
-  playerImg = loadImage("images/pl1.png");
-  playerImgL1 = loadImage("images/plleft1.png");
-  playerImgL2 = loadImage("images/plleft2.png");
-  playerImgR1 = loadImage("images/plright1.png");
-  playerImgR2 = loadImage("images/plright2.png");
+  playerImg = loadImage("images/player1/pl1.png");
+  playerImgL1 = loadImage("images/player1/plleft1.png");
+  playerImgL2 = loadImage("images/player1/plleft2.png");
+  playerImgR1 = loadImage("images/player1/plright1.png");
+  playerImgR2 = loadImage("images/player1/plright2.png");
 
   //player2Img = loadImage("images/d.png");
   //player2ImgL1 = loadImage("images/pll1.png");
@@ -148,8 +158,11 @@ void setup() {
   locHealthBar2Label = new PVector(690,795);
   
   //Creating 2 new objects of player.
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
+   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
+  //player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
+  
+  
+  player1.loadImages("C:/Users/Rudra Modh/Documents/Processing/sketch_Main/images/player1/");
 
   //initialising the stars array
   stars = new Star[1000];
@@ -212,13 +225,13 @@ void draw() {
 
     //calling the inputPlayer class for movement as well as for animation.
     player1.inputPlayer();
-    player2.inputPlayer();
+    //player2.inputPlayer();
     player1.hitCheck();
-    player2.hitCheck();
+    //player2.hitCheck();
     player1.EnemyHitCheck();
-    player2.EnemyHitCheck();
+    //player2.EnemyHitCheck();
     player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
-    player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
+    //player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
     //for displaying bullets
     displayBullets();
 
@@ -379,6 +392,6 @@ void keyReleased() {
   }  
 
   if ( key == 'a' || key == 'd') {
-    player2.shoot();
+    //player2.shoot();
   }
 }
