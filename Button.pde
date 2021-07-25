@@ -15,7 +15,7 @@ class Button {
     w = x;
     h = y;
   }
-
+// for drawing buttonns as well as inserting the text
   void drawButton() {
     fill(218);
     //stroke(100);

@@ -10,7 +10,7 @@ class Bullet {
     this.velocity = velocity;
     this.col = col;
   }
-
+//drawing bullet and differnt color for enemy and player
   void display() {
     if (col) {
       fill(0, 255, 0);
@@ -20,7 +20,7 @@ class Bullet {
     noStroke();
     rect(this.x, this.y, 5, 20);
   }
-
+//adding velocity to bullets
   void move() {
     this.y+=this.velocity;
   }

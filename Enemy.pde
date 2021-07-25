@@ -1,9 +1,7 @@
 //Yashwant enemy class code here!
 class Enemy {
 
-
   PImage [] enemy;
-
 
   // pimage for loading the images
   PImage myImage;
@@ -18,13 +16,10 @@ class Enemy {
   int x;
   int coolingtime;
   
-
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
-
 
     //array for 4 images
     enemy = new PImage[4];
-
 
     //assinging the images
     enemy[0] = myImage;
@@ -32,16 +27,12 @@ class Enemy {
     enemy[2] = myImage2;
     enemy[3] = myImage3;
 
-
-    //resisizing the enemies
-
+    //resisizing all the enemies
     enemy[0].resize(50, 50);
     enemy[1].resize(50, 50);
     enemy[2].resize(50, 50);
     enemy[3].resize(50, 50);
-    //creating random position of enemy on screen
-    //why random 800? to randmize the location of enemy in x direction and 800 is width
-    //why random -200,-100? to randmize the location of enemy in y direction and it should from bit above as, it is like cooling time for new enmy.
+    
     this.loc = loc;
 
     //for randomizing the speed of enemy so each enemy has different speed
@@ -52,15 +43,11 @@ class Enemy {
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
     coolingtime = 0;
   }
-
-
+// for animating all the enemy images
   public void Eanimate(PImage [] enemyImage) {
     //draw function of animation
-
     image(enemyImage[x], this.loc.x, this.loc.y);
-
-    //for sess of animation
-
+    //for smoothness of animation
     if (frameCount%10==0) {
       x++;
       // to revert back to 0th image
@@ -69,11 +56,9 @@ class Enemy {
       }
     }
   }
-
+//for displaying and adding velocity
   public void update() {
-
     Eanimate(enemy);
-
     //giving speed in y direction
     this.loc.y += vel;
     //if enemy go down new enemy will come from top with random position and speed
@@ -83,8 +68,8 @@ class Enemy {
       vel=random(1.5, 3);
     }
   }
-  
-    public void updateHealthBar(){
+ // for healthbooster display and velocity
+    public void updateHealthBooster(){
     Eanimate(enemy);
     //giving speed in y direction
     this.loc.y += vel;
@@ -95,14 +80,11 @@ class Enemy {
       vel=random(1.5,3);
     }
   }
-  
-  
-
+  // adding bullets in enemy
   public void shootE() {
     // creating new object of bullet at enemy location and changing color as weel giving velocity
     Bullet bullet = new Bullet(this.loc.x+24, this.loc.y+15, 5, false);
     //adding the bullet
-
     //incrimenting the value to coolingtime as coolingtimebecomes 0 after below condition
     coolingtime++;
     //if coolingtime > 60 it will go down to 0 and then start again till 60 and it can be ay value 
@@ -113,35 +95,29 @@ class Enemy {
       coolingtime=0;
     }
   }
-
+//for enemy and player bullet collision
   void hitCheck() {
     for (int i = 0; i < bullets.size(); i++) {
-      Bullet b = (Bullet) bullets.get(i);
-     
+      Bullet b = (Bullet) bullets.get(i);   
+      //why b velocity<0 so that enemy doesn't get kill by own bullet. whenever player fires it goes in-value
       if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ){
-
+        //removing enemy after hitting from player bullet from arraylist stored position 
         enemies.remove(this);
-
-
-
         myImage = loadImage("images/e1.png"); 
         myImage1 = loadImage("images/e2.png");
         myImage2 = loadImage("images/e3.png");
         myImage3 = loadImage("images/e4.png");
+        //why adding again becoz if we killed it agin spawns at given position
         loc = new PVector(random(600), random(-200, -100)); 
         enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
-
-
       }
     }
   }
-  void restart(){
-   
+  //for rstarting
+  void restart(){  
    loc = new PVector(random(600), random(-200, -100));;
     //for randomizing the speed of enemy so each enemy has different speed
-    vel=random(1.5, 3);
-
-    
+    vel=random(1.5, 3);   
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
     coolingtime = 0;
   }

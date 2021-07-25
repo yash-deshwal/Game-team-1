@@ -18,33 +18,23 @@
 
 ////for switching the screen
 int stage;
-
+//creating instance of Menu class
 Menu menu;
-
-PVector playButton;
-PVector controlsButton;
-PVector quitButton;
-PVector backButton;
-
-int buttonWidth;
-int buttonHeight;
-
+//creating arraylists of different classes
 ArrayList bullets;
 ArrayList enemies;
 ArrayList enemies2;
-
 ArrayList enemies3;
-
+//creating objects of player class
 Player player1;
 Player player2;
-
+//PVector for health Booster Location
 PVector healthBoosterLoc;
-
+//creating arraylist of healthBooster
 ArrayList healthBooster;
-
-
+//creating array of object of stars for background
 Star[] stars;
-
+//declaring PImage variables
 PImage playerImg;
 PImage playerImgL1;
 PImage playerImgL2;
@@ -73,29 +63,30 @@ PImage imgEn3;
 PImage imgEn4;
 
 PImage imgHb1; 
-
+//for enemy locations
 PVector loc;
-
+//for health bar locations
 PVector locHealthBar1;
 PVector locHealthBar2;
-
+//for labels 
 PVector locHealthBar1Label;
 PVector locHealthBar2Label;
+//checking the player 
 boolean isdead;
 
 void setup() {
   size(800, 800);
-  //initial value of stage 
+  //initial value of stage for switching the menus
   stage=1;
-  
+  //new object of menu for displaying
   menu = new Menu();
-
+  ////initialising the bullets arraylist
   bullets = new ArrayList();
-  //initialising the enemy array
+  //initialising all three enemy arraylist
   enemies = new ArrayList();
   enemies2 = new ArrayList();
-
   enemies3 = new ArrayList();
+  //initialising healthBooster arraylist
   healthBooster = new ArrayList();
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
@@ -104,7 +95,7 @@ void setup() {
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
 
-  // loading all 4 images for enemy animation
+  // loading all 4 images for enemy1,2,3 animation
   myImage = loadImage("images/e1.png"); 
   myImage1 = loadImage("images/e2.png");
   myImage2 = loadImage("images/e3.png");
@@ -119,17 +110,17 @@ void setup() {
   imgEn2 = loadImage("images/ene2.png");
   imgEn3 = loadImage("images/ene3.png");
   imgEn4 = loadImage("images/ene4.png");
-
+  //loading images for health booster here.
   imgHb1 = loadImage("images/health1.png"); 
  
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
   int [] playerControl2 = {65, 68};
-
+  //assigining values to player health bars
   locHealthBar1 = new PVector(10, 760);
   locHealthBar2 = new PVector(590, 760);
-
+  //assigning nAME TO PLAYER Healthbar
   locHealthBar1Label = new PVector(110, 795);
   locHealthBar2Label = new PVector(690, 795);
 
@@ -145,10 +136,7 @@ void setup() {
     stars[i] = new Star();
   }
  
-  buttonWidth = 150;
-  buttonHeight = 70;
-
-  // calling enemy create function
+  // calling all the enemy create function
   createEnemy();
   createEnemy2();
   createEnemy3();
@@ -156,18 +144,22 @@ void setup() {
 }
 
 void draw() {
+  // calling menu class function for switiching to differnt screens
   menu.switchingScreen();
 }
 
+//for poping healthbooster
 void displayHealthBooster() {
   for (int i=0; i<healthBooster.size(); i++) {
-
+//for all the healthbooster in array list
     HealthBooster hb = (HealthBooster) healthBooster.get(i);
-    hb.updateHealthBar();
+    hb.updateHealthBooster();
   }
 }
+//creating healthbooster for player
 void createhealth() {
   for (int i=0; i<1; i++) {
+    //creating at random position and adding it to arraylist
     healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
     healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb1, imgHb1, imgHb1));
   }
@@ -191,9 +183,12 @@ void displayEnemies() {
     e.hitCheck();
   }
 }
-//creating 10 enemies in arraylist
+//creating n enemies in arraylist
 void createEnemy() {
   for (int i=0; i<1; i++) {
+    //creating random position of enemy on screen
+    //why random 800? to randmize the location of enemy in x direction and 800 is width
+    //why random -200,-100? to randmize the location of enemy in y direction and it should from bit above as, it is like cooling time for new enmy.
     loc = new PVector(random(600), random(-200, -100)); 
     enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
   }
@@ -209,7 +204,7 @@ void displayEnemies2() {
     e2.hitCheck();
   }
 }
-//creating 10 enemies in arraylist
+//creating n enemies in arraylist
 void createEnemy2() {
   for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
@@ -226,7 +221,7 @@ void displayEnemies3() {
     e3.hitCheck();
   }
 }
-//creating 10 enemies in arraylist
+//creating n enemies in arraylist
 void createEnemy3() {
   for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
