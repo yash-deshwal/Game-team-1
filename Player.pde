@@ -160,7 +160,7 @@ class Player {
     for (int i = 0; i < bullets.size(); i++) {
       Bullet b = (Bullet) bullets.get(i);
       //why b velocity>0 so that enemy doesn't get kill by own bullet. whenever player fires it goes in+value
-      if (this.position.x+size >= b.x && b.x + 1 >= this.position.x && this.position.y + 1 >= b.y && b.y + 5 >= this.position.y && b.velocity > 0)
+      if (this.position.x+size >= b.x && b.x + 5 >= this.position.x && this.position.y + size >= b.y && b.y + 20 >= this.position.y && b.velocity > 0)
       {
         //decreasing the health of player
         health--;
