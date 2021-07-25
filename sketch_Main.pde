@@ -16,13 +16,10 @@
 //input of speed using arrays in the constructor => done!
 //update the movement code and add boolean array so that both the players move together. refer to the video that was shared.
 
-//for switching the screen
+////for switching the screen
 int stage;
 
-Button play;
-Button controls;
-Button quit;
-Button back;
+Menu menu;
 
 PVector playButton;
 PVector controlsButton;
@@ -37,8 +34,6 @@ ArrayList enemies;
 ArrayList enemies2;
 
 ArrayList enemies3;
-
-//Enemy[] enemy;
 
 Player player1;
 Player player2;
@@ -78,9 +73,6 @@ PImage imgEn3;
 PImage imgEn4;
 
 PImage imgHb1; 
-//PImage imgHb2; 
-//PImage imgHb3; 
-//PImage imgHb4;
 
 PVector loc;
 
@@ -95,6 +87,8 @@ void setup() {
   size(800, 800);
   //initial value of stage 
   stage=1;
+  
+  menu = new Menu();
 
   bullets = new ArrayList();
   //initialising the enemy array
@@ -109,12 +103,6 @@ void setup() {
   playerImgL2 = loadImage("images/plleft2.png");
   playerImgR1 = loadImage("images/plright1.png");
   playerImgR2 = loadImage("images/plright2.png");
-
-  //player2Img = loadImage("images/d.png");
-  //player2ImgL1 = loadImage("images/pll1.png");
-  //player2ImgL2 = loadImage("images/pl12.png");
-  //player2ImgR1 = loadImage("images/plr1.png");
-  //player2ImgR2 = loadImage("images/plr2.png");
 
   // loading all 4 images for enemy animation
   myImage = loadImage("images/e1.png"); 
@@ -133,10 +121,7 @@ void setup() {
   imgEn4 = loadImage("images/ene4.png");
 
   imgHb1 = loadImage("images/health1.png"); 
-  //imgHb2 = loadImage("images/health1.png");
-  //imgHb3 = loadImage("images/health1.png");
-  //imgHb4 = loadImage("images/health1.png");
-
+ 
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -159,13 +144,7 @@ void setup() {
   for (int i=0; i<stars.length; i++) {
     stars[i] = new Star();
   }
-
-
-  playButton = new PVector(width/2-60, height/2-100);
-  controlsButton = new PVector(width/2-60, height/2);
-  quitButton = new PVector(width/2-60, height/2+100);
-  backButton = new PVector(50, 600);
-
+ 
   buttonWidth = 150;
   buttonHeight = 70;
 
@@ -176,119 +155,8 @@ void setup() {
   createhealth();
 }
 
-
 void draw() {
-  //stage = 1 so that it starts from the menu.
-  if (stage == 1) {
-    clear();
-    background(0);
-
-    menu();
-
-    //for displaying stars in the background.
-    displayStars();
-
-    //stage = 2 is the actual gameplay
-    if (mousePressed) {
-      //this is a sort of collision detection with button's width and height to mouse pointer.
-      if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
-        stage = 2;
-      } else if (controlsButton.x + buttonWidth >= mouseX && mouseX >= controlsButton.x && controlsButton.y + buttonHeight >= mouseY && mouseY >= controlsButton.y) {
-        stage = 3;
-      } else if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && quitButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
-        stage = 4;
-      }
-    }
-  }
-  //stage = 2 is the actual gameplay
-  if (stage ==2) {
-    clear();
-    background(0); 
-    //println((int)keyCode);
-    //println(keyCode);
-
-    //calling the inputPlayer class for movement as well as for animation.
-    player1.inputPlayer();
-    player2.inputPlayer();
-    player1.hitCheck(isdead);
-    player2.hitCheck(isdead);
-
-    player1.EnemyHitCheck(isdead);
-    player2.EnemyHitCheck(isdead);
-    player1.Enemy2HitCheck(isdead);
-    player2.Enemy2HitCheck(isdead);
-    player1.Enemy3HitCheck(isdead);
-    player2.Enemy3HitCheck(isdead);
-    player1.HealthHitCheck();
-    player2.HealthHitCheck();
-    player1.drawPlayerHealthBar("Payer1 Health Bar", locHealthBar1Label);
-    player2.drawPlayerHealthBar("Payer2 Health Bar", locHealthBar2Label);
-    //for displaying bullets
-    displayBullets();
-
-    //for displaying enemies
-    displayEnemies();
-    displayEnemies2();
-    displayEnemies3();
-
-    displayHealthBooster();
-
-    //for displaying stars in the background.
-    displayStars();
-  }
-  if (stage == 3) {
-    clear();
-    background(0);
-
-    fill(255);
-    text("w shoot", 400, 150);
-
-    playButton = new PVector(600, 600);
-
-    play = new Button("Play", playButton, buttonWidth, buttonHeight);
-    play.drawButton();
-
-
-    //creating new object of button
-    back = new Button("Back", backButton, buttonWidth, buttonHeight);
-    back.drawButton();
-
-
-    //for displaying stars in the background.
-    displayStars();
-    if (mousePressed) {
-      if (backButton.x + buttonWidth >= mouseX && mouseX >= backButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= backButton.y) {
-        //gamePlay
-        stage = 1;
-        playButton = new PVector(width/2-60, height/2-100);
-      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
-        stage = 2;
-      }
-    }
-  }
-
-  if (stage == 4) {
-    exit();
-  }
-  if (stage ==5) {
-    clear();
-    background(0);
-
-    EndScreen();
-
-    //for displaying stars in the background.
-    displayStars();
-
-    if (mousePressed) {
-      if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
-        //gamePlay
-        stage = 4;
-        //playButton = new PVector(width/2-60, height/2-100);
-      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
-        restart();
-      }
-    }
-  }
+  menu.switchingScreen();
 }
 
 void displayHealthBooster() {
@@ -304,7 +172,6 @@ void createhealth() {
     healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb1, imgHb1, imgHb1));
   }
 }
-
 //for displaying bullets
 void displayBullets() {
   for (int i = 0; i < bullets.size(); i++) {
@@ -313,7 +180,6 @@ void displayBullets() {
     b.display();
   }
 }
-
 //for displaying enemies
 void displayEnemies() {
   for (int i=0; i<enemies.size(); i++) {
@@ -350,8 +216,6 @@ void createEnemy2() {
     enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
   }
 }
-
-
 //for displaying enemies
 void displayEnemies3() {
   for (int i=0; i<enemies3.size(); i++) {
@@ -369,8 +233,6 @@ void createEnemy3() {
     enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
   }
 }
-
-
 //for displaying stars
 void displayStars() {
   //translate is used because we want the stars animation from center.
@@ -381,63 +243,6 @@ void displayStars() {
     stars[i].animate();
   }
 }
-
-void menu() {
-
-  textAlign(CENTER);
-  int textsize = 50;
-  textSize(textsize);
-  fill(255);
-  text("GALAXY SHOOTER", 400, 150);
-
-  //creating new object of button
-  play = new Button("Play", playButton, buttonWidth, buttonHeight);
-  play.drawButton();
-
-  controls = new Button("Controls", controlsButton, buttonWidth, buttonHeight);
-  controls.drawButton();
-
-  quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
-  quit.drawButton();
-}
-void restart() {
-  clear();
-  background(0); 
-  stage=1;
-  for (int i=0; i<enemies.size(); i++) {
-
-    Enemy e = (Enemy) enemies.get(i); 
-    loc = new PVector(random(600), random(-200, -100)); 
-    e.restart();
-  }
-  player1.restart();
-  player2.restart();
-}
-
-void EndScreen() {
-  textAlign(CENTER);
-
-  checkWinner();
-
-  play = new Button("Restart", playButton, buttonWidth, buttonHeight);
-  play.drawButton();
-
-  quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
-  quit.drawButton();
-}
-
-public void checkWinner() {
-  if (player1.health == 0) {
-    textSize(50);
-    fill(255);
-    text("Player 2 is winner", 400, 150);
-  } else if (player2.health == 0) {
-    textSize(50);
-    fill(255);
-    text("Player 1 is winner", 400, 150);
-  }
-}
-
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
   if ( keyCode == LEFT||keyCode ==RIGHT) {
