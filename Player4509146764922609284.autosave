@@ -205,13 +205,10 @@ class Player {
 
       if (this.position.x+size >= e.loc.x && e.loc.x + 50 >= this.position.x && this.position.y + size >= e.loc.y && e.loc.y + 50 >= this.position.y)
       {
-        
         enemies.remove(e);
         loc = new PVector(random(600), random(-200, -100)); 
         enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
         health-=5;
-        println(health);
-        //println(health)
 
         health=constrain(health, 0, 10);
 
@@ -221,77 +218,5 @@ class Player {
         }
       }
     }
-  }
-  
-  void Enemy2HitCheck() {
-    for (int i = 0; i < enemies2.size(); i++) {
-      Enemy2 e2 = (Enemy2) enemies2.get(i);
-
-      if (this.position.x+size >= e2.loc.x && e2.loc.x + 50 >= this.position.x && this.position.y + size >= e2.loc.y && e2.loc.y + 50 >= this.position.y)
-      {
-        
-        enemies2.remove(e2);
-        loc = new PVector(random(600), random(-200, -100)); 
-        enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
-        health-=5;
-        println(health);
-        //println(health)
-
-        health=constrain(health, 0, 10);
-
-        if (health==0) {
-          this.position.x=-100;
-          velocity=0;
-        }
-      }
-    }
-  }
-  
-  void Enemy3HitCheck() {
-    for (int i = 0; i < enemies3.size(); i++) {
-      Enemy3 e3 = (Enemy3) enemies3.get(i);
-
-      if (this.position.x+size >= e3.loc.x && e3.loc.x + 50 >= this.position.x && this.position.y + size >= e3.loc.y && e3.loc.y + 50 >= this.position.y)
-      {
-        
-        enemies3.remove(e3);
-        loc = new PVector(random(600), random(-200, -100)); 
-        enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
-        health-=5;
-        println(health);
-        //println(health)
-
-        health=constrain(health, 0, 10);
-
-        if (health==0) {
-          this.position.x=-100;
-          velocity=0;
-        }
-      }
-    }
-  }
-  
-  void HealthHitCheck(){
-    
-     for (int i = 0; i <  healthBooster.size(); i++) {
-      HealthBooster hb = (HealthBooster)  healthBooster.get(i);
-  if (this.position.x+size >= hb.loc.x && hb.loc.x + 50 >= this.position.x && this.position.y + size >= hb.loc.y && hb.loc.y + 50 >= this.position.y)
-      {
-        healthBooster.remove(hb);
-       
-        health+=10;
-         healthBoosterLoc = new PVector(random(600), random(-2000, -1000)); 
-        healthBooster.add(new HealthBooster( healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1));
-        println(health);
-        //println(health)
-
-        health=constrain(health, 0, 10);
-
-        if (health==0) {
-          this.position.x=-100;
-          velocity=0;
-        }
-      }
-  }
   }
 }
