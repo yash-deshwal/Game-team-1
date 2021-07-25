@@ -179,7 +179,7 @@ class Player {
 
   //public void 
 
-  void hitCheck() {
+  void hitCheck(boolean isdead) {
     for (int i = 0; i < bullets.size(); i++) {
       Bullet b = (Bullet) bullets.get(i);
       //float distBetween = dist(b.x, b.y, position.x, position.y);
@@ -191,15 +191,20 @@ class Player {
         health--;
         //println(health);
         health=constrain(health, 0, 10);
-        if (health==0) {
+        if (health<=0) {
+          isdead=true;
+          if(isdead){
+            stage=5;
+          }
           this.position.x=-100;
           velocity=0;
+          
         }
       }
     }
   }
 
-  void EnemyHitCheck() {
+  void EnemyHitCheck(boolean isdead) {
     for (int i = 0; i < enemies.size(); i++) {
       Enemy e = (Enemy) enemies.get(i);
 
@@ -216,14 +221,20 @@ class Player {
         health=constrain(health, 0, 10);
 
         if (health==0) {
+           isdead=true;
+          if(isdead){
+            stage=5;
+          }
           this.position.x=-100;
           velocity=0;
+          //stage=5;
+          //println(stage);
         }
       }
     }
   }
   
-  void Enemy2HitCheck() {
+  void Enemy2HitCheck(boolean isdead) {
     for (int i = 0; i < enemies2.size(); i++) {
       Enemy2 e2 = (Enemy2) enemies2.get(i);
 
@@ -240,6 +251,10 @@ class Player {
         health=constrain(health, 0, 10);
 
         if (health==0) {
+           isdead=true;
+          if(isdead){
+            stage=5;
+          }
           this.position.x=-100;
           velocity=0;
         }
@@ -247,7 +262,7 @@ class Player {
     }
   }
   
-  void Enemy3HitCheck() {
+  void Enemy3HitCheck(boolean isdead) {
     for (int i = 0; i < enemies3.size(); i++) {
       Enemy3 e3 = (Enemy3) enemies3.get(i);
 
@@ -264,6 +279,10 @@ class Player {
         health=constrain(health, 0, 10);
 
         if (health==0) {
+           isdead=true;
+          if(isdead){
+            stage=5;
+          }
           this.position.x=-100;
           velocity=0;
         }

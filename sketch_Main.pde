@@ -89,7 +89,7 @@ PVector locHealthBar2;
 
 PVector locHealthBar1Label;
 PVector locHealthBar2Label;
-
+boolean isdead;
 
 void setup() {
   size(800, 800);
@@ -174,15 +174,13 @@ void setup() {
   createEnemy2();
   createEnemy3();
   createhealth();
-
-  
   
 }
 
 
 void draw() {
   //stage = 1 so that it starts from the menu.
-  if (stage == 1) {
+ if (stage == 1) {
     clear();
     background(0);
 
@@ -213,15 +211,15 @@ void draw() {
     //calling the inputPlayer class for movement as well as for animation.
     player1.inputPlayer();
     player2.inputPlayer();
-    player1.hitCheck();
-    player2.hitCheck();
+    player1.hitCheck(isdead);
+    player2.hitCheck(isdead);
     
-    player1.EnemyHitCheck();
-    player2.EnemyHitCheck();
-    player1.Enemy2HitCheck();
-    player2.Enemy2HitCheck();
-    player1.Enemy3HitCheck();
-    player2.Enemy3HitCheck();
+    player1.EnemyHitCheck(isdead);
+    player2.EnemyHitCheck(isdead);
+    player1.Enemy2HitCheck(isdead);
+    player2.Enemy2HitCheck(isdead);
+    player1.Enemy3HitCheck(isdead);
+    player2.Enemy3HitCheck(isdead);
     player1.HealthHitCheck();
     player2.HealthHitCheck();
     player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
@@ -238,8 +236,13 @@ void draw() {
 
     //for displaying stars in the background.
     displayStars();
+    
+   
+    
+
+    
   }
-  if (stage == 3) {
+    if (stage == 3) {
     clear();
     background(0);
 
@@ -260,21 +263,32 @@ void draw() {
     //for displaying stars in the background.
     displayStars();
     
-    if (mousePressed){
-      if (backButton.x + buttonWidth >= mouseX && mouseX >= backButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= backButton.y) {
-      //gamePlay
-      stage = 1;
-      playButton = new PVector(width/2-60, height/2-100);
-      
-      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
-        stage = 2;
-      }
-    }
-    
   }
+  
   if (stage == 4) {
     exit();
   }
+  if (stage ==5){
+    clear();
+    background(0);
+
+    EndScreen();
+
+    //for displaying stars in the background.
+    displayStars();
+    
+        if (mousePressed){
+      if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
+      //gamePlay
+      stage = 4;
+      //playButton = new PVector(width/2-60, height/2-100);
+      
+      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
+        stage=1;
+      }
+    }
+
+  } 
 }
 
 void displayHealthBooster(){
@@ -386,8 +400,40 @@ void menu() {
   quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
   quit.drawButton();
 }
+void restart(){
+    clear();
+    background(0); 
+    //println((int)keyCode);
+    //println(keyCode);
 
+    //calling the inputPlayer class for movement as well as for animation.
+    player1.inputPlayer();
+    player2.inputPlayer();
+     displayBullets();
 
+    //for displaying enemies
+    displayEnemies();
+    displayEnemies2();
+    displayEnemies3();
+    
+    displayHealthBooster();
+
+    //for displaying stars in the background.
+    displayStars();
+}
+void EndScreen(){
+textAlign(CENTER);
+  int textsize = 50;
+  textSize(textsize);
+  fill(255);
+  text("Game over", 400, 150);
+  
+   play = new Button("Restart", playButton, buttonWidth, buttonHeight);
+  play.drawButton();
+  
+  quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
+  quit.drawButton();
+}
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
   if ( keyCode == LEFT||keyCode ==RIGHT) {
