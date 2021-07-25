@@ -77,6 +77,9 @@ PVector loc;
 PVector locHealthBar1;
 PVector locHealthBar2;
 
+PVector locHealthBar1Label;
+PVector locHealthBar2Label;
+
 
 void setup() {
   size(800, 800);
@@ -125,11 +128,14 @@ void setup() {
   int [] playerControl2 = {65, 68};
 
   locHealthBar1 = new PVector(10, 760);
-
   locHealthBar2 = new PVector(590, 760);
+  
+  locHealthBar1Label = new PVector(110,795);
+  locHealthBar2Label = new PVector(690,795);
+  
   //Creating 2 new objects of player.
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1);
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2);
+  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
+  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
 
   //initialising the stars array
   stars = new Star[1000];
@@ -190,8 +196,8 @@ void draw() {
     player2.inputPlayer();
     player1.hitCheck();
     player2.hitCheck();
-    player1.drawp1HealthBar();
-    player2.drawp1HealthBar();
+    player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
+    player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
     //for displaying bullets
     displayBullets();
 
@@ -341,10 +347,10 @@ void menu() {
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
   if ( keyCode == LEFT||keyCode ==RIGHT) {
-    player1.shoot();
+    //player1.shoot();
   }  
 
   if ( key == 'a' || key == 'd') {
-    player2.shoot();
+    //player2.shoot();
   }
 }

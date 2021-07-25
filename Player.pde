@@ -8,6 +8,13 @@ class Player {
 
   PVector position;
 
+  String playerLabel;
+  
+  String playerHealthLabel;
+  
+  PVector healthBarLabelLoc;
+
+
   //for direction
   //put array of size 2 inside constructor and call 37,39 for player1 and 65 and 68 for player 2
   int[] keyCodes;
@@ -26,7 +33,10 @@ class Player {
   float velocity;
   PVector HealthBarloc;
 
-  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys, PVector HealthLoc) {
+  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys, PVector HealthLoc, String text) {
+
+    playerLabel = text;
+
 
     //Initialising the arrays of pimage for animation
     playerLeft = new PImage[2];
@@ -75,6 +85,7 @@ class Player {
   //for displaying the default image if no keys are pressed
   public void defaultImage(PImage pimage) {
     image(pimage, position.x, position.y);
+    displayPlayerText();
   }
 
   //for animatiom 
@@ -92,15 +103,23 @@ class Player {
     }
   }
 
+  public void displayPlayerText() {
+    textSize(15);
+    fill(180);
+    text(playerLabel, position.x + 50, position.y+120);
+  }
+
   //for movement
   public void inputPlayer() {
     //if (keyPressed){
     if (keyCode == keyCodes[0]) {
       display(playerLeft);
       position.x -= velocity;
+      displayPlayerText();
     } else if (keyCode == keyCodes[1]) {
       display(playerRight);
       position.x += velocity;
+      displayPlayerText();
     } else {
       defaultImage(playerDefault);
     }
@@ -130,28 +149,35 @@ class Player {
     bullets.add(bullet);
   }
 
-  void drawp1HealthBar() {
-    
-  // Change color
-  if (health < 3)
-  {
-    fill(255, 0, 0);
-  }  
-  else if (health < 6)
-  {
-    fill(255, 200, 0);
-  }
-  else
-  {
-    fill(0, 255, 0);
-  }
+  void drawPlayerHealthBar(String text, PVector textLoc) {
+
+    // Change color
+    if (health < 3)
+    {
+      fill(255, 0, 0);
+    } else if (health < 6)
+    {
+      fill(255, 200, 0);
+    } else
+    {
+      fill(0, 255, 0);
+    }
     noStroke();
     rect(HealthBarloc.x, HealthBarloc.y, map(health, 0, 10, 0, 200), 19);
 
     noFill();
     stroke(255);
     rect(HealthBarloc.x, HealthBarloc.y, 200, 19);
+    
+    playerHealthLabel = text;
+    healthBarLabelLoc = textLoc;
+    
+    textSize(15);
+    fill(180);
+    text(playerHealthLabel, healthBarLabelLoc.x, healthBarLabelLoc.y);
   }
+  
+  //public void 
 
   void hitCheck() {
     for (int i = 0; i < bullets.size(); i++) {

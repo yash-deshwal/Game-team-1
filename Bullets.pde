@@ -17,6 +17,7 @@ class Bullet {
     } else {
       fill(255, 255, 0);
     }
+    noStroke();
     rect(this.x, this.y, 5, 20);
   }
 
