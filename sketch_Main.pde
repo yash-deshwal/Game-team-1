@@ -102,7 +102,7 @@ void setup() {
   enemies2 = new ArrayList();
 
   enemies3 = new ArrayList();
- healthBooster = new ArrayList();
+  healthBooster = new ArrayList();
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
   playerImgL1 = loadImage("images/plleft1.png");
@@ -131,7 +131,7 @@ void setup() {
   imgEn2 = loadImage("images/ene2.png");
   imgEn3 = loadImage("images/ene3.png");
   imgEn4 = loadImage("images/ene4.png");
-  
+
   imgHb1 = loadImage("images/health1.png"); 
   //imgHb2 = loadImage("images/health1.png");
   //imgHb3 = loadImage("images/health1.png");
@@ -144,10 +144,10 @@ void setup() {
 
   locHealthBar1 = new PVector(10, 760);
   locHealthBar2 = new PVector(590, 760);
-  
-  locHealthBar1Label = new PVector(110,795);
-  locHealthBar2Label = new PVector(690,795);
-  
+
+  locHealthBar1Label = new PVector(110, 795);
+  locHealthBar2Label = new PVector(690, 795);
+
   //Creating 2 new objects of player.
   player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
   player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
@@ -174,13 +174,12 @@ void setup() {
   createEnemy2();
   createEnemy3();
   createhealth();
-  
 }
 
 
 void draw() {
   //stage = 1 so that it starts from the menu.
- if (stage == 1) {
+  if (stage == 1) {
     clear();
     background(0);
 
@@ -213,7 +212,7 @@ void draw() {
     player2.inputPlayer();
     player1.hitCheck(isdead);
     player2.hitCheck(isdead);
-    
+
     player1.EnemyHitCheck(isdead);
     player2.EnemyHitCheck(isdead);
     player1.Enemy2HitCheck(isdead);
@@ -222,8 +221,8 @@ void draw() {
     player2.Enemy3HitCheck(isdead);
     player1.HealthHitCheck();
     player2.HealthHitCheck();
-    player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
-    player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
+    player1.drawPlayerHealthBar("Payer1 Health Bar", locHealthBar1Label);
+    player2.drawPlayerHealthBar("Payer2 Health Bar", locHealthBar2Label);
     //for displaying bullets
     displayBullets();
 
@@ -231,26 +230,21 @@ void draw() {
     displayEnemies();
     displayEnemies2();
     displayEnemies3();
-    
+
     displayHealthBooster();
 
     //for displaying stars in the background.
     displayStars();
-    
-   
-    
-
-    
   }
-    if (stage == 3) {
+  if (stage == 3) {
     clear();
     background(0);
 
     fill(255);
     text("w shoot", 400, 150);
-    
+
     playButton = new PVector(600, 600);
-    
+
     play = new Button("Play", playButton, buttonWidth, buttonHeight);
     play.drawButton();
 
@@ -262,23 +256,21 @@ void draw() {
 
     //for displaying stars in the background.
     displayStars();
-     if (mousePressed){
+    if (mousePressed) {
       if (backButton.x + buttonWidth >= mouseX && mouseX >= backButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= backButton.y) {
-      //gamePlay
-      stage = 1;
-      playButton = new PVector(width/2-60, height/2-100);
-     
+        //gamePlay
+        stage = 1;
+        playButton = new PVector(width/2-60, height/2-100);
       } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
         stage = 2;
       }
     }
-    
   }
-  
+
   if (stage == 4) {
     exit();
   }
-  if (stage ==5){
+  if (stage ==5) {
     clear();
     background(0);
 
@@ -286,32 +278,30 @@ void draw() {
 
     //for displaying stars in the background.
     displayStars();
-    
-        if (mousePressed){
+
+    if (mousePressed) {
       if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
-      //gamePlay
-      stage = 4;
-      //playButton = new PVector(width/2-60, height/2-100);
-      
+        //gamePlay
+        stage = 4;
+        //playButton = new PVector(width/2-60, height/2-100);
       } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
         restart();
       }
     }
-
-  } 
+  }
 }
 
-void displayHealthBooster(){
-    for (int i=0; i<healthBooster.size(); i++) {
+void displayHealthBooster() {
+  for (int i=0; i<healthBooster.size(); i++) {
 
     HealthBooster hb = (HealthBooster) healthBooster.get(i);
-  hb.updateHealthBar();
-    }
+    hb.updateHealthBar();
+  }
 }
-void createhealth(){
+void createhealth() {
   for (int i=0; i<1; i++) {
     healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
- healthBooster.add(new HealthBooster( healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1));
+    healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb1, imgHb1, imgHb1));
   }
 }
 
@@ -333,7 +323,6 @@ void displayEnemies() {
     e.update();
     e.shootE();
     e.hitCheck();
-    
   }
 }
 //creating 10 enemies in arraylist
@@ -411,64 +400,44 @@ void menu() {
   quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
   quit.drawButton();
 }
-void restart(){
-    clear();
-    background(0); 
-   stage=1;
-for (int i=0; i<enemies.size(); i++) {
+void restart() {
+  clear();
+  background(0); 
+  stage=1;
+  for (int i=0; i<enemies.size(); i++) {
 
     Enemy e = (Enemy) enemies.get(i); 
     loc = new PVector(random(600), random(-200, -100)); 
-  e.restart();
+    e.restart();
+  }
+  player1.restart();
+  player2.restart();
 }
-player1.restart();
-player2.restart();
 
- // bullets = new ArrayList();
- // //initialising the enemy array
- // enemies = new ArrayList();
- // enemies2 = new ArrayList();
+void EndScreen() {
+  textAlign(CENTER);
 
- // enemies3 = new ArrayList();
- //healthBooster = new ArrayList();
- 
-  // calling enemy create function
-  //createEnemy();
-  //createEnemy2();
-  //createEnemy3();
-  //createhealth();
-  
+  checkWinner();
+
+  play = new Button("Restart", playButton, buttonWidth, buttonHeight);
+  play.drawButton();
+
+  quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
+  quit.drawButton();
 }
-void EndScreen(){
-textAlign(CENTER);
-  int textsize = 50;
-  textSize(textsize);
-  fill(255);
-  if(player1.health == 0){
-    //println("player2 is winner");
-    fill(0);
-    rect(0,0,800,800);
-   
+
+public void checkWinner() {
+  if (player1.health == 0) {
     textSize(50);
     fill(255);
     text("Player 2 is winner", 400, 150);
-   
-  } else if(player2.health == 0) {
-    //println("player1 is winner");
-   
-    fill(0);
-    rect(0,0,800,800);
-   
+  } else if (player2.health == 0) {
     textSize(50);
     fill(255);
     text("Player 1 is winner", 400, 150);
   }
-   play = new Button("Restart", playButton, buttonWidth, buttonHeight);
-  play.drawButton();
-  
-  quit = new Button("Quit", quitButton, buttonWidth, buttonHeight);
-  quit.drawButton();
 }
+
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
   if ( keyCode == LEFT||keyCode ==RIGHT) {

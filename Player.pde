@@ -215,8 +215,6 @@ class Player {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
         health-=5;
-        println(health);
-        //println(health)
 
         health=constrain(health, 0, 10);
 
@@ -245,8 +243,6 @@ class Player {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
         health-=5;
-        println(health);
-        //println(health)
 
         health=constrain(health, 0, 10);
 
@@ -273,8 +269,6 @@ class Player {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
         health-=5;
-        println(health);
-        //println(health)
 
         health=constrain(health, 0, 10);
 
@@ -301,8 +295,6 @@ class Player {
         health+=10;
          healthBoosterLoc = new PVector(random(600), random(-2000, -1000)); 
         healthBooster.add(new HealthBooster( healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1));
-        println(health);
-        //println(health)
 
         health=constrain(health, 0, 10);
 
