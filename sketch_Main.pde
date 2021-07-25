@@ -262,6 +262,16 @@ void draw() {
 
     //for displaying stars in the background.
     displayStars();
+     if (mousePressed){
+      if (backButton.x + buttonWidth >= mouseX && mouseX >= backButton.x && backButton.y + buttonHeight >= mouseY && mouseY >= backButton.y) {
+      //gamePlay
+      stage = 1;
+      playButton = new PVector(width/2-60, height/2-100);
+     
+      } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
+        stage = 2;
+      }
+    }
     
   }
   
@@ -284,7 +294,7 @@ void draw() {
       //playButton = new PVector(width/2-60, height/2-100);
       
       } else if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
-        stage=1;
+        restart();
       }
     }
 
@@ -323,6 +333,7 @@ void displayEnemies() {
     e.update();
     e.shootE();
     e.hitCheck();
+    
   }
 }
 //creating 10 enemies in arraylist
@@ -403,31 +414,55 @@ void menu() {
 void restart(){
     clear();
     background(0); 
-    //println((int)keyCode);
-    //println(keyCode);
+   stage=1;
+for (int i=0; i<enemies.size(); i++) {
 
-    //calling the inputPlayer class for movement as well as for animation.
-    player1.inputPlayer();
-    player2.inputPlayer();
-     displayBullets();
+    Enemy e = (Enemy) enemies.get(i); 
+    loc = new PVector(random(600), random(-200, -100)); 
+  e.restart();
+}
+player1.restart();
+player2.restart();
 
-    //for displaying enemies
-    displayEnemies();
-    displayEnemies2();
-    displayEnemies3();
-    
-    displayHealthBooster();
+ // bullets = new ArrayList();
+ // //initialising the enemy array
+ // enemies = new ArrayList();
+ // enemies2 = new ArrayList();
 
-    //for displaying stars in the background.
-    displayStars();
+ // enemies3 = new ArrayList();
+ //healthBooster = new ArrayList();
+ 
+  // calling enemy create function
+  //createEnemy();
+  //createEnemy2();
+  //createEnemy3();
+  //createhealth();
+  
 }
 void EndScreen(){
 textAlign(CENTER);
   int textsize = 50;
   textSize(textsize);
   fill(255);
-  text("Game over", 400, 150);
-  
+  if(player1.health == 0){
+    //println("player2 is winner");
+    fill(0);
+    rect(0,0,800,800);
+   
+    textSize(50);
+    fill(255);
+    text("Player 2 is winner", 400, 150);
+   
+  } else if(player2.health == 0) {
+    //println("player1 is winner");
+   
+    fill(0);
+    rect(0,0,800,800);
+   
+    textSize(50);
+    fill(255);
+    text("Player 1 is winner", 400, 150);
+  }
    play = new Button("Restart", playButton, buttonWidth, buttonHeight);
   play.drawButton();
   
