@@ -45,7 +45,8 @@ Player player2;
 
 PVector healthBoosterLoc;
 
-HealthBooster healthBooster;
+ArrayList healthBooster;
+
 
 Star[] stars;
 
@@ -101,7 +102,7 @@ void setup() {
   enemies2 = new ArrayList();
 
   enemies3 = new ArrayList();
-
+ healthBooster = new ArrayList();
   //loading images for players here.
   playerImg = loadImage("images/pl1.png");
   playerImgL1 = loadImage("images/plleft1.png");
@@ -172,10 +173,9 @@ void setup() {
   createEnemy();
   createEnemy2();
   createEnemy3();
+  createhealth();
+
   
-  healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
-  
-  healthBooster = new HealthBooster(healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1);
   
 }
 
@@ -215,8 +215,15 @@ void draw() {
     player2.inputPlayer();
     player1.hitCheck();
     player2.hitCheck();
+    
     player1.EnemyHitCheck();
     player2.EnemyHitCheck();
+    player1.Enemy2HitCheck();
+    player2.Enemy2HitCheck();
+    player1.Enemy3HitCheck();
+    player2.Enemy3HitCheck();
+    player1.HealthHitCheck();
+    player2.HealthHitCheck();
     player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
     player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
     //for displaying bullets
@@ -271,8 +278,17 @@ void draw() {
 }
 
 void displayHealthBooster(){
-  healthBooster.updateHealthBar();
-  
+    for (int i=0; i<healthBooster.size(); i++) {
+
+    HealthBooster hb = (HealthBooster) healthBooster.get(i);
+  hb.updateHealthBar();
+    }
+}
+void createhealth(){
+  for (int i=0; i<1; i++) {
+    healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
+ healthBooster.add(new HealthBooster( healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1));
+  }
 }
 
 //for displaying bullets
