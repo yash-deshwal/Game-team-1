@@ -10,6 +10,8 @@ class Enemy3 extends Enemy {
       if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ) {
         //removing enemy after hitting from player bullet from arraylist stored position 
         enemies3.remove(this);
+        //for removing bullets after hitting
+        bullets.remove(b);
         imgEn1 = loadImage("images/ene1.png"); 
         imgEn2 = loadImage("images/ene2.png");
         imgEn3 = loadImage("images/ene3.png");

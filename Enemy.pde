@@ -15,7 +15,7 @@ class Enemy {
   //x for incremneting of animation
   int x;
   int coolingtime;
-  
+
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
 
     //array for 4 images
@@ -32,7 +32,7 @@ class Enemy {
     enemy[1].resize(50, 50);
     enemy[2].resize(50, 50);
     enemy[3].resize(50, 50);
-    
+
     this.loc = loc;
 
     //for randomizing the speed of enemy so each enemy has different speed
@@ -43,7 +43,7 @@ class Enemy {
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
     coolingtime = 0;
   }
-// for animating all the enemy images
+  // for animating all the enemy images
   public void Eanimate(PImage [] enemyImage) {
     //draw function of animation
     image(enemyImage[x], this.loc.x, this.loc.y);
@@ -56,7 +56,7 @@ class Enemy {
       }
     }
   }
-//for displaying and adding velocity
+  //for displaying and adding velocity
   public void update() {
     Eanimate(enemy);
     //giving speed in y direction
@@ -68,8 +68,8 @@ class Enemy {
       vel=random(1.5, 3);
     }
   }
- // for healthbooster display and velocity
-    public void updateHealthBooster(){
+  // for healthbooster display and velocity
+  public void updateHealthBooster() {
     Eanimate(enemy);
     //giving speed in y direction
     this.loc.y += vel;
@@ -77,7 +77,7 @@ class Enemy {
     //can do height/2 when all enemy is die
     if (loc.y > height) {
       loc = new PVector(random(600), random(-2000, -1000));
-      vel=random(1.5,3);
+      vel=random(1.5, 3);
     }
   }
   // adding bullets in enemy
@@ -95,14 +95,16 @@ class Enemy {
       coolingtime=0;
     }
   }
-//for enemy and player bullet collision
+  //for enemy and player bullet collision
   void hitCheck() {
     for (int i = 0; i < bullets.size(); i++) {
       Bullet b = (Bullet) bullets.get(i);   
       //why b velocity<0 so that enemy doesn't get kill by own bullet. whenever player fires it goes in-value
-      if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ){
+      if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ) {
         //removing enemy after hitting from player bullet from arraylist stored position 
         enemies.remove(this);
+        //for removing bullets after hitting
+        bullets.remove(b);
         myImage = loadImage("images/e1.png"); 
         myImage1 = loadImage("images/e2.png");
         myImage2 = loadImage("images/e3.png");
@@ -114,8 +116,9 @@ class Enemy {
     }
   }
   //for rstarting
-  void restart(){  
-   loc = new PVector(random(600), random(-200, -100));;
+  void restart() {  
+    loc = new PVector(random(600), random(-200, -100));
+    ;
     //for randomizing the speed of enemy so each enemy has different speed
     vel=random(1.5, 3);   
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function

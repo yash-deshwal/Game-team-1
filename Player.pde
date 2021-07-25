@@ -164,6 +164,8 @@ class Player {
       {
         //decreasing the health of player
         health--;
+        //for removing bullets after hitting
+        bullets.remove(b);
         //for limiting the values
         health=constrain(health, 0, 10);
         if (health<=0) {

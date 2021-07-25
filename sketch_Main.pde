@@ -112,7 +112,7 @@ void setup() {
   imgEn4 = loadImage("images/ene4.png");
   //loading images for health booster here.
   imgHb1 = loadImage("images/health1.png"); 
- 
+
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
   int [] playerControl1 = {37, 39};
@@ -135,7 +135,7 @@ void setup() {
   for (int i=0; i<stars.length; i++) {
     stars[i] = new Star();
   }
- 
+
   // calling all the enemy create function
   createEnemy();
   createEnemy2();
@@ -151,7 +151,7 @@ void draw() {
 //for poping healthbooster
 void displayHealthBooster() {
   for (int i=0; i<healthBooster.size(); i++) {
-//for all the healthbooster in array list
+    //for all the healthbooster in array list
     HealthBooster hb = (HealthBooster) healthBooster.get(i);
     hb.updateHealthBooster();
   }
