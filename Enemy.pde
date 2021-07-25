@@ -135,4 +135,14 @@ class Enemy {
       }
     }
   }
+  void restart(){
+   
+   loc = new PVector(random(600), random(-200, -100));;
+    //for randomizing the speed of enemy so each enemy has different speed
+    vel=random(1.5, 3);
+
+    
+    //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
+    coolingtime = 0;
+  }
 }

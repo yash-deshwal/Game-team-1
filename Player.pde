@@ -196,8 +196,8 @@ class Player {
           if(isdead){
             stage=5;
           }
-          this.position.x=-100;
-          velocity=0;
+          //this.position.x=-100;
+          //velocity=0;
           
         }
       }
@@ -225,8 +225,8 @@ class Player {
           if(isdead){
             stage=5;
           }
-          this.position.x=-100;
-          velocity=0;
+         // this.position.x=-100;
+          //velocity=0;
           //stage=5;
           //println(stage);
         }
@@ -255,8 +255,8 @@ class Player {
           if(isdead){
             stage=5;
           }
-          this.position.x=-100;
-          velocity=0;
+         // this.position.x=-100;
+         // velocity=0;
         }
       }
     }
@@ -283,8 +283,8 @@ class Player {
           if(isdead){
             stage=5;
           }
-          this.position.x=-100;
-          velocity=0;
+        //  this.position.x=-100;
+         // velocity=0;
         }
       }
     }
@@ -306,11 +306,27 @@ class Player {
 
         health=constrain(health, 0, 10);
 
-        if (health==0) {
-          this.position.x=-100;
-          velocity=0;
-        }
+      
       }
   }
+  }
+  
+  void restart(){
+   //playerLeft = new PImage[2];
+   //playerRight = new PImage[2];
+    size = 100;
+    velocity=5;
+   // keyCodes = new int[2];
+
+
+    // for incrementing the position
+    index=0;
+
+    //for frameCount
+    count=20;
+    health=10;
+    inputPlayer();
+    //for position of the player
+    //position = new PVector(x, y);
   }
 }

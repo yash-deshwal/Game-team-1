@@ -24,4 +24,5 @@ class Bullet {
   void move() {
     this.y+=this.velocity;
   }
+ 
 }
