@@ -17,6 +17,7 @@ class Enemy {
   //x for incremneting of animation
   int x;
   int coolingtime;
+  
 
   public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
 
@@ -82,6 +83,20 @@ class Enemy {
       vel=random(1.5, 3);
     }
   }
+  
+    public void updateHealthBar(){
+    Eanimate(enemy);
+    //giving speed in y direction
+    this.loc.y += vel;
+    //if enemy go down new enemy will come from top with random position and speed
+    //can do height/2 when all enemy is die
+    if (loc.y > height) {
+      loc = new PVector(random(600), random(-2000, -1000));
+      vel=random(1.5,3);
+    }
+  }
+  
+  
 
   public void shootE() {
     // creating new object of bullet at enemy location and changing color as weel giving velocity

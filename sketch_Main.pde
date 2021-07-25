@@ -43,6 +43,10 @@ ArrayList enemies3;
 Player player1;
 Player player2;
 
+PVector healthBoosterLoc;
+
+HealthBooster healthBooster;
+
 Star[] stars;
 
 PImage playerImg;
@@ -71,6 +75,11 @@ PImage imgEn1;
 PImage imgEn2; 
 PImage imgEn3; 
 PImage imgEn4;
+
+PImage imgHb1; 
+//PImage imgHb2; 
+//PImage imgHb3; 
+//PImage imgHb4;
 
 PVector loc;
 
@@ -121,6 +130,11 @@ void setup() {
   imgEn2 = loadImage("images/ene2.png");
   imgEn3 = loadImage("images/ene3.png");
   imgEn4 = loadImage("images/ene4.png");
+  
+  imgHb1 = loadImage("images/health1.png"); 
+  //imgHb2 = loadImage("images/health1.png");
+  //imgHb3 = loadImage("images/health1.png");
+  //imgHb4 = loadImage("images/health1.png");
 
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
@@ -158,6 +172,11 @@ void setup() {
   createEnemy();
   createEnemy2();
   createEnemy3();
+  
+  healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
+  
+  healthBooster = new HealthBooster(healthBoosterLoc,imgHb1, imgHb1, imgHb1,imgHb1);
+  
 }
 
 
@@ -205,6 +224,8 @@ void draw() {
     displayEnemies();
     displayEnemies2();
     displayEnemies3();
+    
+    displayHealthBooster();
 
     //for displaying stars in the background.
     displayStars();
@@ -245,6 +266,11 @@ void draw() {
   if (stage == 4) {
     exit();
   }
+}
+
+void displayHealthBooster(){
+  healthBooster.updateHealthBar();
+  
 }
 
 //for displaying bullets
