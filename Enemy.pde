@@ -79,7 +79,7 @@ class Enemy {
     //if enemy go down new enemy will come from top with random position and speed
     //can do height/2 when all enemy is die
     if (loc.y > height) {
-      loc = new PVector(random(800), random(-200, -100));
+      loc = new PVector(random(600), random(-200, -100));
       vel=random(1.5, 3);
     }
   }
