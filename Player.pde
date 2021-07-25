@@ -9,9 +9,9 @@ class Player {
   PVector position;
 
   String playerLabel;
-  
+
   String playerHealthLabel;
-  
+
   PVector healthBarLabelLoc;
 
 
@@ -168,15 +168,15 @@ class Player {
     noFill();
     stroke(255);
     rect(HealthBarloc.x, HealthBarloc.y, 200, 19);
-    
+
     playerHealthLabel = text;
     healthBarLabelLoc = textLoc;
-    
+
     textSize(15);
     fill(180);
     text(playerHealthLabel, healthBarLabelLoc.x, healthBarLabelLoc.y);
   }
-  
+
   //public void 
 
   void hitCheck() {
@@ -191,6 +191,31 @@ class Player {
         health--;
         //println(health);
         health=constrain(health, 0, 10);
+        if (health==0) {
+          this.position.x=-100;
+          velocity=0;
+        }
+      }
+    }
+  }
+
+  void EnemyHitCheck() {
+    for (int i = 0; i < enemies.size(); i++) {
+      Enemy e = (Enemy) enemies.get(i);
+
+      if (this.position.x+size >= e.loc.x && e.loc.x + 50 >= this.position.x && this.position.y + size >= e.loc.y && e.loc.y + 50 >= this.position.y)
+      {
+        fill(255);
+        rect(100, 100, 50, 60);
+        enemies.remove(e);
+        loc = new PVector(random(600), random(-200, -100)); 
+        enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+        health-=5;
+        println(health);
+        //println(health)
+
+        health=constrain(health, 0, 10);
+
         if (health==0) {
           this.position.x=-100;
           velocity=0;

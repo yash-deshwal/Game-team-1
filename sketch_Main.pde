@@ -196,6 +196,8 @@ void draw() {
     player2.inputPlayer();
     player1.hitCheck();
     player2.hitCheck();
+    player1.EnemyHitCheck();
+    player2.EnemyHitCheck();
     player1.drawPlayerHealthBar("Payer1 Health Bar",locHealthBar1Label);
     player2.drawPlayerHealthBar("Payer2 Health Bar",locHealthBar2Label);
     //for displaying bullets
@@ -347,10 +349,10 @@ void menu() {
 //For shooting the bullets, why keyReleased coz if we put inside keyPressed and we hold the key for shooting then creating a straight line.
 void keyReleased() {
   if ( keyCode == LEFT||keyCode ==RIGHT) {
-    //player1.shoot();
+    player1.shoot();
   }  
 
   if ( key == 'a' || key == 'd') {
-    //player2.shoot();
+    player2.shoot();
   }
 }
