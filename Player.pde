@@ -1,5 +1,11 @@
+import processing.sound.*;
 //player class
 class Player {
+  
+  SoundFile sound;
+  String audio = "sounds/bullets/impact.mp3";
+  String path = "";
+  
   //new pimage arrays
   PImage playerDefault;
   PImage [] playerLeft;
@@ -29,7 +35,7 @@ class Player {
   //health bar location
   PVector HealthBarloc;
   // constructor
-  public Player(float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys, PVector HealthLoc, String text) {
+  public Player(PApplet p,float x, float y, PImage plImg, PImage plImgLeft1, PImage plImgLeft2, PImage plImgRight1, PImage plImgRight2, int [] keys, PVector HealthLoc, String text) {
     // for caption
     playerLabel = text;
     //Initialising the arrays of pimage for animation
@@ -65,6 +71,10 @@ class Player {
     health=10;
     //for position of the player
     position = new PVector(x, y);
+    
+    path = sketchPath(audio);
+    sound = new SoundFile(p, path);
+    
   }
 
   //for displaying the default image if no keys are pressed
@@ -126,6 +136,7 @@ class Player {
   public void shoot() {
     // creating new object of bullet at player location and changing color as well giving velocity
     Bullet bullet = new Bullet(position.x+50, position.y, -5, true);
+    play();
     bullets.add(bullet);
   }
   //player health bar display
@@ -188,7 +199,7 @@ class Player {
         enemies.remove(e);
         //adding back to given position 
         loc = new PVector(random(600), random(-200, -100)); 
-        enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+        enemies.add(new Enemy(pApplet, loc, myImage, myImage1, myImage2, myImage3));
         //decreasing health by 5 if player hits enemy
         health-=5;
 
@@ -214,7 +225,7 @@ class Player {
         enemies2.remove(e2);
         //adding back to given position 
         loc = new PVector(random(600), random(-200, -100)); 
-        enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
+        enemies2.add(new Enemy2(pApplet,loc, newEn1, newEn2, newEn3, newEn4));
         //decreasing health by 5 if player hits enemy
         health-=5;
         health=constrain(health, 0, 10);
@@ -238,7 +249,7 @@ class Player {
         enemies3.remove(e3);
         //adding back to given position 
         loc = new PVector(random(600), random(-200, -100)); 
-        enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
+        enemies3.add(new Enemy3(pApplet, loc, imgEn1, imgEn2, imgEn3, imgEn4));
         //decreasing health by 5 if player hits enemy
         health-=5;
         health=constrain(health, 0, 10);
@@ -283,4 +294,10 @@ class Player {
     health=10;
     inputPlayer();
   }
+  
+  void play(){
+   sound.play(); 
+  }
+  
+ 
 }

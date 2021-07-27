@@ -1,5 +1,11 @@
+import processing.sound.*;
 //Yashwant enemy class code here!
+PApplet pApplet;
+SoundFile blast;
 class Enemy {
+  
+  String audio = "sounds/bullets/blast.mp3";
+  String path = "";
 
   PImage [] enemy;
 
@@ -16,8 +22,8 @@ class Enemy {
   int x;
   int coolingtime;
 
-  public Enemy(PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
-
+  public Enemy(PApplet p, PVector loc, PImage myImage, PImage myImage1, PImage myImage2, PImage myImage3) {
+    pApplet = p;
     //array for 4 images
     enemy = new PImage[4];
 
@@ -42,6 +48,9 @@ class Enemy {
     x=0;
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
     coolingtime = 0;
+    
+    path = sketchPath(audio);
+    blast = new SoundFile(p, path);
   }
   // for animating all the enemy images
   public void Eanimate(PImage [] enemyImage) {
@@ -103,6 +112,7 @@ class Enemy {
       if (this.loc.x+50 >= b.x && b.x + 5 >= this.loc.x && this.loc.y + 50 >= b.y && b.y + 20 >= this.loc.y && b.velocity < 0 ) {
         //removing enemy after hitting from player bullet from arraylist stored position 
         enemies.remove(this);
+        blast();
         //for removing bullets after hitting
         bullets.remove(b);
         myImage = loadImage("images/e1.png"); 
@@ -111,7 +121,7 @@ class Enemy {
         myImage3 = loadImage("images/e4.png");
         //why adding again becoz if we killed it agin spawns at given position
         loc = new PVector(random(600), random(-200, -100)); 
-        enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+        enemies.add(new Enemy(pApplet,loc, myImage, myImage1, myImage2, myImage3));
       }
     }
   }
@@ -123,5 +133,9 @@ class Enemy {
     vel=random(1.5, 3);   
     //initial vaue of coolingtime why 1? it doesn't have to be 1 it can be anyvalue since we are coolintiming 0 in bullet function
     coolingtime = 0;
+  }
+  
+   void blast(){
+   blast.play(); 
   }
 }
