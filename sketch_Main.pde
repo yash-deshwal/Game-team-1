@@ -67,6 +67,9 @@ PImage imgEn3;
 PImage imgEn4;
 
 PImage imgHb1; 
+PImage imgHb2; 
+PImage imgHb3; 
+PImage imgHb4; 
 //for enemy locations
 PVector loc;
 //for health bar locations
@@ -119,7 +122,10 @@ void setup() {
   imgEn3 = loadImage("images/ene3.png");
   imgEn4 = loadImage("images/ene4.png");
   //loading images for health booster here.
-  imgHb1 = loadImage("images/health1.png"); 
+  imgHb1 = loadImage("images/health1.png");
+  imgHb2 = loadImage("images/health2.png");
+  imgHb3 = loadImage("images/health3.png");
+  imgHb4 = loadImage("images/health4.png");
 
   //37 left(LEFT), 39 right(RIGHT)
   //65 left(a), 68 right(d)
@@ -171,7 +177,7 @@ void createhealth() {
   for (int i=0; i<1; i++) {
     //creating at random position and adding it to arraylist
     healthBoosterLoc = new PVector(random(600), random(-2000, -1000));
-    healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb1, imgHb1, imgHb1));
+    healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb2, imgHb3, imgHb4));
   }
 }
 //for displaying bullets

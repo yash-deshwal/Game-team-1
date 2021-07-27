@@ -91,14 +91,17 @@ class Menu {
       gameStartMenu();
       //for displaying stars in the background.
       displayStars();
-      //stage = 2 is the actual gameplay
+      
       if (mousePressed) {
         //this is a sort of collision detection with button's width and height to mouse pointer.
         if (playButton.x + buttonWidth >= mouseX && mouseX >= playButton.x && playButton.y + buttonHeight >= mouseY && mouseY >= playButton.y) {
+          //stage = 2 is the actual gameplay
           stage = 2;
         } else if (controlsButton.x + buttonWidth >= mouseX && mouseX >= controlsButton.x && controlsButton.y + buttonHeight >= mouseY && mouseY >= controlsButton.y) {
+          //stage = 3 is the guide/controls page
           stage = 3;
         } else if (quitButton.x + buttonWidth >= mouseX && mouseX >= quitButton.x && quitButton.y + buttonHeight >= mouseY && mouseY >= quitButton.y) {
+          //stage = 4 is quit
           stage = 4;
         }
       }
