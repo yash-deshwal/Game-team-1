@@ -16,6 +16,10 @@
 //input of speed using arrays in the constructor => done!
 //update the movement code and add boolean array so that both the players move together. refer to the video that was shared.
 
+import processing.sound.*;
+
+SoundFile background;
+
 ////for switching the screen
 int stage;
 //creating instance of Menu class
@@ -74,8 +78,12 @@ PVector locHealthBar2Label;
 //checking the player 
 boolean isdead;
 
+String audio;
+String path;
+
 void setup() {
   size(800, 800);
+  
   //initial value of stage for switching the menus
   stage=1;
   //new object of menu for displaying
@@ -125,8 +133,8 @@ void setup() {
   locHealthBar2Label = new PVector(690, 795);
 
   //Creating 2 new objects of player.
-  player1 = new Player(width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
-  player2 = new Player(100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
+  player1 = new Player(this,width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
+  player2 = new Player(this,100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
 
   //initialising the stars array
   stars = new Star[1000];
@@ -141,6 +149,8 @@ void setup() {
   createEnemy2();
   createEnemy3();
   createhealth();
+  
+  backgroundSound();
 }
 
 void draw() {
@@ -190,7 +200,7 @@ void createEnemy() {
     //why random 800? to randmize the location of enemy in x direction and 800 is width
     //why random -200,-100? to randmize the location of enemy in y direction and it should from bit above as, it is like cooling time for new enmy.
     loc = new PVector(random(600), random(-200, -100)); 
-    enemies.add(new Enemy(loc, myImage, myImage1, myImage2, myImage3));
+    enemies.add(new Enemy(this, loc, myImage, myImage1, myImage2, myImage3));
   }
 }
 
@@ -208,7 +218,7 @@ void displayEnemies2() {
 void createEnemy2() {
   for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
-    enemies2.add(new Enemy2(loc, newEn1, newEn2, newEn3, newEn4));
+    enemies2.add(new Enemy2(pApplet, loc, newEn1, newEn2, newEn3, newEn4));
   }
 }
 //for displaying enemies
@@ -225,7 +235,7 @@ void displayEnemies3() {
 void createEnemy3() {
   for (int i=0; i<1; i++) {
     loc = new PVector(random(600), random(-200, -100)); 
-    enemies3.add(new Enemy3(loc, imgEn1, imgEn2, imgEn3, imgEn4));
+    enemies3.add(new Enemy3(pApplet, loc, imgEn1, imgEn2, imgEn3, imgEn4));
   }
 }
 //for displaying stars
@@ -247,4 +257,13 @@ void keyReleased() {
   if ( key == 'a' || key == 'd') {
     player2.shoot();
   }
+  
+  
+}
+
+void backgroundSound(){
+  audio = "sounds/background/theme.mp3";
+  path = sketchPath(audio);
+  background = new SoundFile(this, path);
+  background.loop(1, 0.3);
 }

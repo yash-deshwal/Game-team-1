@@ -78,8 +78,8 @@ class Menu {
       loc = new PVector(random(600), random(-200, -100)); 
       e.restart();
     }
-    player1.restart();
-    player2.restart();
+    player1.restart(width/2, 600);
+    player2.restart(100, 600);
   }
   //for switiching between screens 
   public void switchingScreen() {
