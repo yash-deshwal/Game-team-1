@@ -277,7 +277,7 @@ class Player {
         health+=10;
         //adding at this position
         healthBoosterLoc = new PVector(random(600), random(-2000, -1000)); 
-        healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb1, imgHb1, imgHb1));
+        healthBooster.add(new HealthBooster( healthBoosterLoc, imgHb1, imgHb2, imgHb3, imgHb4));
 
         health=constrain(health, 0, 10);
       }
