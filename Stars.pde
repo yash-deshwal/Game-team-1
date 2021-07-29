@@ -38,7 +38,7 @@ class Star {
 
     //mapping the z value which goes betwen 0-width and 6-0. so whn they are close to screen
     //the size should be 6 and when they are far size is 0
-    float r= map(z, 0, width, 3, 0);
+    float r= map(z, 0, width, 6, 0);
 
     ellipse(sx, sy, r, r);
   }

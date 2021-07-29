@@ -201,7 +201,7 @@ class Player {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies.add(new Enemy(pApplet, loc, myImage, myImage1, myImage2, myImage3));
         //decreasing health by 5 if player hits enemy
-        health-=5;
+        health-=2;
 
         health=constrain(health, 0, 10);
 
@@ -227,7 +227,7 @@ class Player {
         loc = new PVector(random(600), random(-200, -100)); 
         enemies2.add(new Enemy2(pApplet,loc, newEn1, newEn2, newEn3, newEn4));
         //decreasing health by 5 if player hits enemy
-        health-=5;
+        health-=3;
         health=constrain(health, 0, 10);
         if (health==0) {
           isdead=true;
@@ -284,7 +284,9 @@ class Player {
     }
   }
   //for restart
-  void restart() {
+  void restart(float x, float y) {
+    position = new PVector(x, y);
+   
     size = 100;
     velocity=5;
     // for incrementing the position
