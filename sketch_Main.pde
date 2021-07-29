@@ -1,21 +1,3 @@
-//Main class
-//*****************************Bug******************************
-//if you press any other key than 'a' or 'd' it throws error ArrayIndexOutOfBoundsException: 1 => solution We made another method just to display the default image and called it inside input function
-//Not able to control both the players at once
-//Animation is not upto the mark it overlaps when we move left or right => solution We used else statement inside the input function instead of directly displaying it to main function
-//Enemies are overlapping.
-//So the movement works fine but only 1 player can move at a time shooting works fine
-//if we move left or right and then fire it goes back to default image(space shooter)
-//if we keep pressing space bar then it creates a line effect (bullets) => solution We used keyReleased instead of keyPress.
-//after inheritance the child class copies the parent but it doesn't show up immediately as soon as we kill enemy the new enemy starts popping.
-//*****************************Bug******************************
-
-//***********************************Changes****************************************
-//inherit enemy class to one another enemy
-//change enemy class to oop
-//input of speed using arrays in the constructor => done!
-//update the movement code and add boolean array so that both the players move together. refer to the video that was shared.
-
 import processing.sound.*;
 
 SoundFile background;

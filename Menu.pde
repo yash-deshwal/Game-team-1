@@ -148,7 +148,12 @@ class Menu {
       clear();
       background(0);
       fill(255);
-      text("w shoot", 400, 150);
+      textSize(40);
+      text("Welcome To Galaxy Shooter guide", 400, 150);
+      textSize(30);
+      text("\n Player 1 moves with the arrows 'LEFT' and 'RIGHT'\n and shoots the enemy with the same arrows.\n ", 400, 200);
+      textSize(30);
+      text("\n \n Player 2 moves with the keys 'a' and 'd',\n and shoots the enemy with the same keys. ", 400, 300);
 
       playButton = new PVector(600, 600);
 
