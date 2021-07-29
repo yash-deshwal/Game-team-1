@@ -153,7 +153,7 @@ class Menu {
       textSize(30);
       text("\n Player 1 moves with the arrows 'LEFT' and 'RIGHT'\n and shoots the enemy with the same arrows.\n ", 400, 200);
       textSize(30);
-      text("\n \n Player 2 moves with the keys 'a' and 'k',\n and shoots the enemy with the same keys. ", 400, 300);
+      text("\n \n Player 2 moves with the keys 'a' and 'd',\n and shoots the enemy with the same keys. ", 400, 300);
 
       playButton = new PVector(600, 600);
 
