@@ -14,7 +14,14 @@ Gameplay
 -Health Booster to replenish the decreased health
 -Whoever Dies first, loses.
 
+
 ![Galaxy-Shooter](https://user-images.githubusercontent.com/64874475/128790267-51d81347-bd42-4694-94be-c802c0bd75f0.gif)
+
+
+
+
+
+
 
 Game Logic and rules
 
