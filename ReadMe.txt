@@ -15,8 +15,8 @@ Gameplay
 -Whoever Dies first, loses.
 
 Demo
-https://imgflip.com/gif/5j3pob
 
+![Galaxy-Shooter](https://user-images.githubusercontent.com/64874475/128791579-4282aa6f-f45d-4b5e-83aa-57b95fa58fb3.gif)
 
 Game Logic and rules
 
