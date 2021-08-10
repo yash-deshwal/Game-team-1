@@ -121,8 +121,8 @@ void setup() {
   locHealthBar2Label = new PVector(690, 795);
 
   //Creating 2 new objects of player.
-  player1 = new Player(this,width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
-  player2 = new Player(this,100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
+  player1 = new Player(this,100, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl1, locHealthBar1, "Player1");
+  player2 = new Player(this,width/2, 600, playerImg, playerImgL1, playerImgL2, playerImgR1, playerImgR2, playerControl2, locHealthBar2, "Player2");
 
   //initialising the stars array
   stars = new Star[1000];
