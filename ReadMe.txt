@@ -16,7 +16,7 @@ Gameplay
 
 Demo
 
-![Galaxy-Shooter](https://user-images.githubusercontent.com/64874475/128790716-73db306e-de0d-4170-a147-b8465b1e0097.gif)
+<div style="width:360px;max-width:100%;"><div style="height:0;padding-bottom:100%;position:relative;"><iframe width="360" height="360" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/5j3pob"></iframe></div><p><a href="https://imgflip.com/gif/5j3pob">via Imgflip</a></p></div>
 
 
 Game Logic and rules
